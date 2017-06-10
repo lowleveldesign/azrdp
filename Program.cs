@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using CommandLine;
 using Microsoft.Azure.Management.Compute.Fluent;
+using Microsoft.Azure.Management.Compute.Fluent.Models;
 using Microsoft.Azure.Management.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
 
@@ -34,12 +35,29 @@ namespace AzRdp
                 return;
             }
 
+            azure.VirtualMachines.Define("__azrdp")
+                                 .WithRegion("FIXME")
+                                 .WithExistingResourceGroup("FIXME")
+                                 .WithExistingPrimaryNetwork()
+                                 .WithSubnet()
+                                 .WithPrimaryPrivateIPAddressDynamic()
+                                 .WithNewPrimaryPublicIPAddress("leafdnslabel")
+                                 .WithPopularLinuxImage(KnownLinuxVirtualMachineImage.)
+                                 .WithRootUsername("azrdp")
+                                 .WithSsh("FIXME:public key")
+                                 .WithSize(VirtualMachineSizeTypes.StandardA1)
+
+            // FIXME: move to method
             logger.TraceEvent(TraceEventType.Verbose, 0, "Searching for the subnet containing a given IP address...");
             foreach (var network in azure.Networks.List()) {
                 if (string.Equals(options.ResourceGroupName, network.ResourceGroupName, StringComparison.OrdinalIgnoreCase)) {
                     foreach (var addressSpace in network.AddressSpaces) {
                         var ipNetwork = IPNetwork.Parse(addressSpace);
-                        //if (ipNetwork.Contkj)
+                        if (IPNetwork.Contains(ipNetwork, virtualMachineIPAddress)) {
+                            foreach (var subnet in network.Subnets.Values) {
+                                
+                            }
+                        }
                     }
                 }
             }
