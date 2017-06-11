@@ -1,26 +1,34 @@
-﻿using System;
+﻿using CommandLine;
+using Microsoft.Azure.Management.Fluent;
+using System;
 using System.Diagnostics;
 using System.Net;
-using CommandLine;
-using Microsoft.Azure.Management.Compute.Fluent;
-using Microsoft.Azure.Management.Compute.Fluent.Models;
-using Microsoft.Azure.Management.Fluent;
-using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
+using Utilities;
 
-namespace AzRdp
+namespace LowLevelDesign.AzureRemoteDesktop
 {
     class Program
     {
-        static void Main(string[] args)
+
+        [STAThread()]
+        public static void Main(string[] args)
+        {
+            Unpack();
+
+            DoMain(args);
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        static void DoMain(string[] args)
         {
             var argParseResult = Parser.Default.ParseArguments<Options>(args);
             if (argParseResult is NotParsed<Options>) {
                 return;
             }
             var options = ((Parsed<Options>)argParseResult).Value;
-
-            var logger = new TraceSource("default", options.Verbose ? SourceLevels.Verbose : SourceLevels.Information);
-            logger.Listeners.Add(new ConsoleTraceListener());
+            if (options.Verbose) {
+                Logger.Level = SourceLevels.Verbose;
+            }
 
             var azure = Azure.Authenticate(options.CredentialFilePath).WithDefaultSubscription(); // FIXME to change
 
@@ -30,45 +38,22 @@ namespace AzRdp
                 return;
             }
 
-            if (!IPAddress.TryParse(options.VirtualMachineIPAddress, out var virtualMachineIPAddress)) {
+            IPAddress virtualMachineIPAddress;
+            if (!IPAddress.TryParse(options.VirtualMachineIPAddress, out virtualMachineIPAddress)) {
                 Console.Error.WriteLine("ERROR: invalid format of the IP address");
                 return;
             }
 
-            // azure.VirtualMachines.Define("__azrdp")
-            //                      .WithRegion("FIXME")
-            //                      .WithExistingResourceGroup("FIXME")
-            //                      .WithExistingPrimaryNetwork()
-            //                      .WithSubnet()
-            //                      .WithPrimaryPrivateIPAddressDynamic()
-            //                      .WithNewPrimaryPublicIPAddress("leafdnslabel")
-            //                      .WithPopularLinuxImage(KnownLinuxVirtualMachineImage.)
-            //                      .WithRootUsername("azrdp")
-            //                      .WithSsh("FIXME:public key")
-            //                      .WithSize(VirtualMachineSizeTypes.StandardA1)
+            var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
+            try {
+                azureJumpBox.DeployAndStart().Wait(); // FIXME: we should show a progress with dots here
 
-            // FIXME: move to method
-            // logger.TraceEvent(TraceEventType.Verbose, 0, "Searching for the subnet containing a given IP address...");
-            // foreach (var network in azure.Networks.List()) {
-            //     if (string.Equals(options.ResourceGroupName, network.ResourceGroupName, StringComparison.OrdinalIgnoreCase)) {
-            //         foreach (var addressSpace in network.AddressSpaces) {
-            //             var ipNetwork = IPNetwork.Parse(addressSpace);
-            //             if (IPNetwork.Contains(ipNetwork, virtualMachineIPAddress)) {
-            //                 foreach (var subnet in network.Subnets.Values) {
-                                
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
-
-            // FIXME: not sure if I really need do this
-            // var vm = FindVirtualMachine(azure, options.ResourceGroupName, options.VirtualMachineIPAddress);
-            // if (vm == null) {
-            //     Console.Error.WriteLine("ERROR: could not find the virtual machine. " +
-            //         "Make sure you typed a valid resource group and IP address.");
-            //     return;
-            // }
+                // FIXME: start openssh in a hidden window
+                // FIXME: start mstsc with a connection to localhost and a port number
+            } catch (Exception ex) {
+                Console.WriteLine("ERROR: error occurred while deploying the machine. " + ex.Message);
+                azureJumpBox.Dispose();
+            }
         }
 
         static void ListAvailableVirtualMachines(IAzure azure)
@@ -83,14 +68,12 @@ namespace AzRdp
             }
         }
 
-        static IVirtualMachine FindVirtualMachine(IAzure azure, string resourceGroupName, string ipAddress) {
-            foreach (var vm in azure.VirtualMachines.List()) {
-                if (string.Equals(resourceGroupName, vm.ResourceGroupName, StringComparison.OrdinalIgnoreCase) &&
-                    string.Equals(ipAddress, vm.GetPrimaryNetworkInterface().PrimaryPrivateIP, StringComparison.OrdinalIgnoreCase)) {
-                    return vm;
-                }
-            }
-            return null;
+        /// <summary>
+        /// Unpacks all the support files associated with this program.   
+        /// </summary>
+        public static bool Unpack()
+        {
+            return SupportFiles.UnpackResourcesIfNeeded();
         }
     }
 }

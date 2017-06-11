@@ -1,7 +1,7 @@
 
 using CommandLine;
 
-namespace AzRdp
+namespace LowLevelDesign.AzureRemoteDesktop
 {
     class Options
     {
