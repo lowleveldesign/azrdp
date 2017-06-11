@@ -1,0 +1,2390 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Azure.Management.KeyVault.Fluent</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl">
+             <summary>
+             Implementation for AccessPolicy and its parent interfaces.
+             </summary>
+            GENTHASH:Y29tLm1pY3Jvc29mdC5henVyZS5tYW5hZ2VtZW50LmtleXZhdWx0LmltcGxlbWVudGF0aW9uLkFjY2Vzc1BvbGljeUltcGw=
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.#ctor(Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry,Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl)">
+            GENMHASH:DB1CD9648996DA10B58423DFABD976E4:BC7BE29DA61C7F6594944FD23512AD2F
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.UserPrincipalName">
+            GENMHASH:EFC2DDE75F20FD4EAFECA334A50B3D22:B383D7B422F0E34653A55B7CA778970F
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ServicePrincipalName">
+            GENMHASH:F7CF19ADF2E05F1D39D6A50FA0A5AB79:EB069810FBC10E1827D16F395FF3A078
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.TenantId">
+            GENMHASH:DA183CCEBC00D21096D59D1B439F4E2F:8CE5F00FA8F3A032BD5A0628F8ACA3DB
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ObjectId">
+            GENMHASH:17540EB75C744FB87D329C55BE359E09:398DB6C274F97FC8B13DE18ED8C1BA0B
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ApplicationId">
+            GENMHASH:359D1EADA427782D05CA5CF20BD6D91A:FDF832AECB3EF51F25367680A7510FAB
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Permissions">
+            GENMHASH:5FECF7CEB96EFF8A50AB4CA3950B5843:833D7CA0001EC62E67CD177E707E39B5
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Name">
+            GENMHASH:3E38805ED0E7BA3CAEE31311D032A21C:ECE58FC8B41B858AA434697B6028BD23
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.InitializeKeyPermissions">
+            GENMHASH:2548489FEC6DEDA375BB14337408C32F:F98681659352BAAE0C36842A9939C2C0
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.InitializeSecretPermissions">
+            GENMHASH:E016D80945C42D59D0AEF2D38ECB30DB:5F47B75D080175C69CF7CF370856DC63
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.AllowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            GENMHASH:CAED6C15F9B42B76A5AC64F370A3FD5B:53E624BA383B922224605FF351DC75E1
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.AllowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            GENMHASH:4285C26105D2CACA3EB31944C49CADB1:4EA7EF6F19835FEDF776325D20842BA6
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.AllowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            GENMHASH:3B24D44CFE59D6F67A1E749291E41B8F:A4770BCE1DF8EF5C1DC58FB5ECE21BC9
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.AllowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            GENMHASH:78BA35A3DD13CB1E4732F1F2B4B3F36A:9C923B42AB4F3547C2D5E115CC1EE332
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Attach">
+            GENMHASH:077EB7776EFFBFAA141C1696E75EF7B3:B7963E82870A365FD51B673F0B0274AC
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ForObjectId(System.Guid)">
+            GENMHASH:458BF8ACE4D00DD896B7979D96F7C2EB:225E1D92A92E81E1982C4A483BC88058
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ForUser(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryUser)">
+            GENMHASH:9D8D39171FFFFE2517D8100304C11862:6A48AA5D0D2710F0A8787D34676538E1
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ForUser(System.String)">
+            GENMHASH:8E6D48BCE723A76A602CE321050BFECB:57A825FB9FC082E89AA8F17B8DEB7486
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ForGroup(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryGroup)">
+            GENMHASH:498DF2FE8CE61E58CF671C4DCDF1A6D1:B99DEC951B47738BA49B5FC2B737021E
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ForServicePrincipal(Microsoft.Azure.Management.Graph.RBAC.Fluent.IServicePrincipal)">
+            GENMHASH:7B10596856964977EC5E018A031EE6E9:AA2717CDA7300E14A15599831EE2375F
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.ForServicePrincipal(System.String)">
+            GENMHASH:A5A82E0B3718195704CB5A3CC0F635D9:7F5AA729AD0F3F93063692EA32AF9FD8
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.AllowKeyAllPermissions">
+            GENMHASH:01ABB2A8A169AF9132F24847F24D56E9:6BD265DE8D6EB0AF71D7E13104A95DB5
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.DisallowKeyAllPermissions">
+            GENMHASH:A03FAAD8A56A117F1C5B4D0165E18038:2886FCB58861FDE2A5A0722CF95F02F8
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.DisallowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            GENMHASH:0379078579ABB5B0C7747DE0FCD150CE:32E7054731C3AF1FE28D7D4F657764E5
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.DisallowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            GENMHASH:BFC40A8274C194ADA54B97FFF26C792F:B6357A7A6591914A7D868EDF465B9C79
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.AllowSecretAllPermissions">
+            GENMHASH:23EFE82E8A7FB33D4BEAF74B70CE1367:3E60726A1B82A5D46BD83ECBDA666DAC
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.DisallowSecretAllPermissions">
+            GENMHASH:034BD24F1EDCEF94C2B612E26745EC84:3DEB6E41E02F3F5DD756AAD51E9D5A41
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.DisallowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            GENMHASH:0BE789A9F7F46772A48AE4DEF539ED9B:C45089A07841C467C39B8B11526C860C
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.DisallowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            GENMHASH:044EB3BD07FE92ADABF599BDE9722E03:08024B552C1C45974AC88973802166CA
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#IHasName#Name">
+            <returns>the name of the child resource</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#ChildResource#Update#IInUpdate{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#Attach">
+            <summary>
+            Attaches the child definition to the parent resource update.
+            </summary>
+            <returns>the next stage of the parent definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#AllowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#AllowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#AllowKeyAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#AllowSecretAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#AllowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#AllowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#AllowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#AllowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#AllowKeyAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#AllowSecretAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#AllowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithPermissions{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#AllowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#IAccessPolicy#ObjectId">
+            <returns>The object ID of a user or service principal in the Azure Active</returns>
+            <returns>Directory tenant for the vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#IAccessPolicy#TenantId">
+            <returns>The Azure Active Directory tenant ID that should be used for</returns>
+            <returns>authenticating requests to the key vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#IAccessPolicy#Permissions">
+            <returns>Permissions the identity has for keys and secrets.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#IAccessPolicy#ApplicationId">
+            <returns>Application ID of the client making request on behalf of a principal.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#ForServicePrincipal(Microsoft.Azure.Management.Graph.RBAC.Fluent.IServicePrincipal)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipal">servicePrincipal the AD service principal object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#ForServicePrincipal(System.String)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipalName">servicePrincipalName the service principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#ForUser(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryUser)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="user">user the AD user object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#ForUser(System.String)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="userPrincipalName">userPrincipalName the user principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#ForGroup(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryGroup)">
+            <summary>
+            Specifies the Active Directory group this access policy is for.
+            </summary>
+            <param name="group">group the AD group object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#UpdateDefinition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#ForObjectId(System.Guid)">
+            <summary>
+            Specifies the object ID of the Active Directory identity this access policy is for.
+            </summary>
+            <param name="objectId">objectId the object ID of the AD identity</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#ForServicePrincipal(Microsoft.Azure.Management.Graph.RBAC.Fluent.IServicePrincipal)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipal">servicePrincipal the AD service principal object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#ForServicePrincipal(System.String)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipalName">servicePrincipalName the service principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#ForUser(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryUser)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="user">user the AD user object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#ForUser(System.String)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="userPrincipalName">userPrincipalName the user principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#ForGroup(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryGroup)">
+            <summary>
+            Specifies the Active Directory group this access policy is for.
+            </summary>
+            <param name="group">group the AD group object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Definition#IWithIdentity{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithCreate}#ForObjectId(System.Guid)">
+            <summary>
+            Specifies the object ID of the Active Directory identity this access policy is for.
+            </summary>
+            <param name="objectId">objectId the object ID of the AD identity</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#ChildResource#Definition#IInDefinition{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IUpdate}#Attach">
+            <summary>
+            Attaches the child definition to the parent resource definiton.
+            </summary>
+            <returns>the next stage of the parent definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#DisallowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Revoke a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#DisallowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Revoke a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#DisallowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Revoke a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#DisallowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Revoke a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#AllowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#AllowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#AllowKeyAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#DisallowSecretAllPermissions">
+            <summary>
+            Revoke all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#AllowSecretAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#DisallowKeyAllPermissions">
+            <summary>
+            Revoke all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#AllowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicyImpl.Microsoft#Azure#Management#KeyVault#Fluent#AccessPolicy#Update#IWithPermissions#AllowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.CertificatePermissions">
+            <summary>
+            Defines values for CertificatePermissions.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions">
+            <summary>
+            Defines values for KeyPermissions.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions">
+            <summary>
+            Defines values for SecretPermissions.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry">
+            <summary>
+            An identity that have access to the key vault. All identities in the
+            array must use the same tenant ID as the key vault's tenant ID.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry.#ctor">
+            <summary>
+            Initializes a new instance of the AccessPolicyEntry class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry.#ctor(System.Guid,System.String,Microsoft.Azure.Management.KeyVault.Fluent.Models.Permissions,System.Nullable{System.Guid})">
+            <summary>
+            Initializes a new instance of the AccessPolicyEntry class.
+            </summary>
+            <param name="tenantId">The Azure Active Directory tenant ID that
+            should be used for authenticating requests to the key
+            vault.</param>
+            <param name="objectId">The object ID of a user, service principal
+            or security group in the Azure Active Directory tenant for the
+            vault. The object ID must be unique for the list of access
+            policies.</param>
+            <param name="permissions">Permissions the identity has for keys,
+            secrets and certificates.</param>
+            <param name="applicationId"> Application ID of the client making
+            request on behalf of a principal</param>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry.TenantId">
+            <summary>
+            Gets or sets the Azure Active Directory tenant ID that should be
+            used for authenticating requests to the key vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry.ObjectId">
+            <summary>
+            Gets or sets the object ID of a user, service principal or security
+            group in the Azure Active Directory tenant for the vault. The
+            object ID must be unique for the list of access policies.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry.ApplicationId">
+            <summary>
+            Gets or sets  Application ID of the client making request on behalf
+            of a principal
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry.Permissions">
+            <summary>
+            Gets or sets permissions the identity has for keys, secrets and
+            certificates.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.Page`1">
+            <summary>
+            Defines a page in Azure responses.
+            </summary>
+            <typeparam name="T">Type of the page content items</typeparam>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.Page`1.NextPageLink">
+            <summary>
+            Gets the link to the next page.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Page`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>A an enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Page`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>A an enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.Permissions">
+            <summary>
+            Permissions the identity has for keys, secrets and certificates.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Permissions.#ctor">
+            <summary>
+            Initializes a new instance of the Permissions class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Permissions.#ctor(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+            <summary>
+            Initializes a new instance of the Permissions class.
+            </summary>
+            <param name="keys">Permissions to keys</param>
+            <param name="secrets">Permissions to secrets</param>
+            <param name="certificates">Permissions to certificates</param>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.Permissions.Keys">
+            <summary>
+            Gets or sets permissions to keys
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.Permissions.Secrets">
+            <summary>
+            Gets or sets permissions to secrets
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.Permissions.Certificates">
+            <summary>
+            Gets or sets permissions to certificates
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku">
+            <summary>
+            SKU details
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku.#ctor">
+            <summary>
+            Initializes a new instance of the Sku class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku.#ctor(Microsoft.Azure.Management.KeyVault.Fluent.Models.SkuName)">
+            <summary>
+            Initializes a new instance of the Sku class.
+            </summary>
+            <param name="name">SKU name to specify whether the key vault is a
+            standard vault or a premium vault. Possible values include:
+            'standard', 'premium'</param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku.#cctor">
+            <summary>
+            Static constructor for Sku class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku.Name">
+            <summary>
+            Gets or sets SKU name to specify whether the key vault is a
+            standard vault or a premium vault. Possible values include:
+            'standard', 'premium'
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku.Family">
+            <summary>
+            SKU family name
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.SkuName">
+            <summary>
+            Defines values for SkuName.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner">
+            <summary>
+            Parameters for creating or updating a vault
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner.#ctor">
+            <summary>
+            Initializes a new instance of the
+            VaultCreateOrUpdateParametersInner class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner.#ctor(System.String,Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the
+            VaultCreateOrUpdateParametersInner class.
+            </summary>
+            <param name="location">The supported Azure location where the key
+            vault should be created.</param>
+            <param name="properties">Properties of the vault</param>
+            <param name="tags">The tags that will be assigned to the key vault.
+            </param>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner.Location">
+            <summary>
+            Gets or sets the supported Azure location where the key vault
+            should be created.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner.Tags">
+            <summary>
+            Gets or sets the tags that will be assigned to the key vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner.Properties">
+            <summary>
+            Gets or sets properties of the vault
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultInner">
+            <summary>
+            Resource information with extended details.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultInner.#ctor">
+            <summary>
+            Initializes a new instance of the VaultInner class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultInner.#ctor(Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties,System.String,System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the VaultInner class.
+            </summary>
+            <param name="properties">Properties of the vault</param>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultInner.Properties">
+            <summary>
+            Gets or sets properties of the vault
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultInner.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties">
+            <summary>
+            Properties of the vault
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.#ctor">
+            <summary>
+            Initializes a new instance of the VaultProperties class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.#ctor(System.Guid,Microsoft.Azure.Management.KeyVault.Fluent.Models.Sku,System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.AccessPolicyEntry},System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Initializes a new instance of the VaultProperties class.
+            </summary>
+            <param name="tenantId">The Azure Active Directory tenant ID that
+            should be used for authenticating requests to the key
+            vault.</param>
+            <param name="sku">SKU details</param>
+            <param name="accessPolicies">An array of 0 to 16 identities that
+            have access to the key vault. All identities in the array must use
+            the same tenant ID as the key vault's tenant ID.</param>
+            <param name="vaultUri">The URI of the vault for performing
+            operations on keys and secrets.</param>
+            <param name="enabledForDeployment">Property to specify whether
+            Azure Virtual Machines are permitted to retrieve certificates
+            stored as secrets from the key vault.</param>
+            <param name="enabledForDiskEncryption">Property to specify whether
+            Azure Disk Encryption is permitted to retrieve secrets from the
+            vault and unwrap keys.</param>
+            <param name="enabledForTemplateDeployment">Property to specify
+            whether Azure Resource Manager is permitted to retrieve secrets
+            from the key vault.</param>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.VaultUri">
+            <summary>
+            Gets or sets the URI of the vault for performing operations on keys
+            and secrets.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.TenantId">
+            <summary>
+            Gets or sets the Azure Active Directory tenant ID that should be
+            used for authenticating requests to the key vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.Sku">
+            <summary>
+            Gets or sets SKU details
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.AccessPolicies">
+            <summary>
+            Gets or sets an array of 0 to 16 identities that have access to the
+            key vault. All identities in the array must use the same tenant ID
+            as the key vault's tenant ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.EnabledForDeployment">
+            <summary>
+            Gets or sets property to specify whether Azure Virtual Machines are
+            permitted to retrieve certificates stored as secrets from the key
+            vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.EnabledForDiskEncryption">
+            <summary>
+            Gets or sets property to specify whether Azure Disk Encryption is
+            permitted to retrieve secrets from the vault and unwrap keys.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.EnabledForTemplateDeployment">
+            <summary>
+            Gets or sets property to specify whether Azure Resource Manager is
+            permitted to retrieve secrets from the key vault.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultProperties.Validate">
+            <summary>
+            Validate the object.
+            </summary>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown if validation fails
+            </exception>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl">
+             <summary>
+             Implementation for Vault and its parent interfaces.
+             </summary>
+            GENTHASH:Y29tLm1pY3Jvc29mdC5henVyZS5tYW5hZ2VtZW50LmtleXZhdWx0LmltcGxlbWVudGF0aW9uLlZhdWx0SW1wbA==
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.#ctor(System.String,Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultInner,Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManager,Microsoft.Azure.Management.Graph.RBAC.Fluent.IGraphRbacManager)">
+            GENMHASH:E75D6B887F703BA75910BF996B59E45B:30C9A572991D1AB6921DBD5E8344AFAF
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.VaultUri">
+            GENMHASH:FAAD3C3E07174E29B21DE058D968BBF7:A534A23FE2D228AC3080C1CF07E66439
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.TenantId">
+            GENMHASH:DA183CCEBC00D21096D59D1B439F4E2F:FFCFE20B73A713E38ACED4776AC46C2C
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Sku">
+            GENMHASH:F792F6C8C594AA68FA7A0FCA92F55B55:DCCE63C0590230B4CFE00D1B7646DFE9
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.AccessPolicies">
+            GENMHASH:A4B5C79524255870A60CFDA07E865BBC:A881A75678053A99DDDBBD7F4D918F27
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.EnabledForDeployment">
+            GENMHASH:032C9B05DA12329F399E00C8E7D622BA:AEBBF9B6E0BE19BD64777AE3BCBA4694
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.EnabledForDiskEncryption">
+            GENMHASH:760F392B9819F999D811AA3DF8CD6995:D72546C4354BCCA735CC554047B889E0
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.EnabledForTemplateDeployment">
+            GENMHASH:FB8FAE6C8DE1A864EF1BD60C4764B792:D453188CD9BA7FAB6F7075EADC992BFC
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithEmptyAccessPolicy">
+            GENMHASH:577E5E9CE0B513EB5189E6F44BB732C7:3949CE4CBC4994E8C88DF2E4815A8696
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithoutAccessPolicy(System.String)">
+            GENMHASH:BF5C974C7992D71D59A8BE2B5FFA9735:2CCFBF766FF017AFE0634B508567A0A7
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithAccessPolicy(Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy)">
+            GENMHASH:95F821073A967350F605DCFDEE9C4F36:0AA6BCED9B5EF30513E45E352F8ADD43
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.DefineAccessPolicy">
+            GENMHASH:BCF2D31DA6ACC2C1FE7BDC9DC74816C3:7CE2DCE276A093BBCE8B68236538DCEE
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.UpdateAccessPolicy(System.String)">
+            GENMHASH:3AEEB786F759E7AE4D1CDECFE914787F:6AD9D0D3F38CAC761595B7A99B53F17A
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithDeploymentEnabled">
+            GENMHASH:E1C93AA0BBBD8356E9DB1218E7724613:EA22EAA4A75A2D4E53AFD4BF45481AC9
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithDiskEncryptionEnabled">
+            GENMHASH:22BA5A0B770282F6544D8D60FF1EB6B3:EA29FD68A346F94BA2C4B60B1973D9AA
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithTemplateDeploymentEnabled">
+            GENMHASH:526C0B06DCB31F150274918FFB1642E2:8DB41F0F2AE630487FE7D9F880CE9C9D
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithDeploymentDisabled">
+            GENMHASH:5BB8550126BE75DAD0B2AB7A5CDB59B2:3A0134537AEECA49CA9AC2C85D82FFA9
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithDiskEncryptionDisabled">
+            GENMHASH:7D19CF226982E29D18B8EBD4F54DC892:63C66769BC07A9D01F3B3AEAD827B8B2
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithTemplateDeploymentDisabled">
+            GENMHASH:70F27F86F71ADC791D3B0F3867F86DED:E7AF7B9719E4E19ED550AE466CC34876
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.WithSku(Microsoft.Azure.Management.KeyVault.Fluent.Models.SkuName)">
+            GENMHASH:B5E3D903BDA1F2A62441339A3042D8F4:E59E1393C8B2F3C07E87C9F34E983726
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.PopulateAccessPolicies(System.Threading.CancellationToken)">
+            GENMHASH:1BFD0AD1E7180AAE5C7C7706268179BD:654FAB1549649BDDA9AAC1BB3468DBFB
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.CreateResourceAsync(System.Threading.CancellationToken)">
+            GENMHASH:0202A00A1DCF248D2647DBDBEF2CA865:6825C2C979F565D012F22FFCBBFAB9ED
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.GetInnerAsync(System.Threading.CancellationToken)">
+            GENMHASH:4002186478A1CB0B59732EBFB18DEB3A:CC9FF17BB935059EB35312593856BE61
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#ResourceActions#IRefreshable{Microsoft#Azure#Management#KeyVault#Fluent#IVault}#Refresh">
+            <summary>
+            Refreshes the resource to sync with Azure.
+            </summary>
+            <returns>the refreshed resource</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#IVault#TenantId">
+            <returns>the Azure Active Directory tenant ID that should be used for</returns>
+            <returns>authenticating requests to the key vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#IVault#EnabledForTemplateDeployment">
+            <returns>whether Azure Resource Manager is permitted to</returns>
+            <returns>retrieve secrets from the key vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#IVault#EnabledForDiskEncryption">
+            <returns>whether Azure Disk Encryption is permitted to</returns>
+            <returns>retrieve secrets from the vault and unwrap keys.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#IVault#VaultUri">
+            <returns>the URI of the vault for performing operations on keys and secrets.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#IVault#Sku">
+            <returns>SKU details.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#IVault#EnabledForDeployment">
+            <returns>whether Azure Virtual Machines are permitted to</returns>
+            <returns>retrieve certificates stored as secrets from the key vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#IVault#AccessPolicies">
+            <returns>an array of 0 to 16 identities that have access to the key vault. All</returns>
+            <returns>identities in the array must use the same tenant ID as the key vault's</returns>
+            <returns>tenant ID.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithConfigurations#WithDiskEncryptionEnabled">
+            <summary>
+            Enable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithConfigurations#WithTemplateDeploymentEnabled">
+            <summary>
+            Enable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithConfigurations#WithDeploymentEnabled">
+            <summary>
+            Enable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithConfigurations#WithDeploymentDisabled">
+            <summary>
+            Disable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithConfigurations#WithTemplateDeploymentDisabled">
+            <summary>
+            Disable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithConfigurations#WithDiskEncryptionDisabled">
+            <summary>
+            Disable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithConfigurations#WithDiskEncryptionEnabled">
+            <summary>
+            Enable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithConfigurations#WithTemplateDeploymentEnabled">
+            <summary>
+            Enable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithConfigurations#WithDeploymentEnabled">
+            <summary>
+            Enable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithConfigurations#WithDeploymentDisabled">
+            <summary>
+            Disable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithConfigurations#WithTemplateDeploymentDisabled">
+            <summary>
+            Disable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithConfigurations#WithDiskEncryptionDisabled">
+            <summary>
+            Disable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithAccessPolicy#WithEmptyAccessPolicy">
+            <summary>
+            Attach no access policy.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithAccessPolicy#DefineAccessPolicy">
+            <summary>
+            Begins the definition of a new access policy to be added to this key vault.
+            </summary>
+            <returns>the first stage of the access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithAccessPolicy#WithAccessPolicy(Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy)">
+            <summary>
+            Attach an existing access policy.
+            </summary>
+            <param name="accessPolicy">accessPolicy the existing access policy</param>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithAccessPolicy#WithoutAccessPolicy(System.String)">
+            <summary>
+            Remove an access policy from the access policy list.
+            </summary>
+            <param name="objectId">objectId the object ID of the Active Directory identity the access policy is for</param>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithAccessPolicy#DefineAccessPolicy">
+            <summary>
+            Begins the definition of a new access policy to be added to this key vault.
+            </summary>
+            <returns>the first stage of the access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithAccessPolicy#UpdateAccessPolicy(System.String)">
+            <summary>
+            Begins the update of an existing access policy attached to this key vault.
+            </summary>
+            <param name="objectId">objectId the object ID of the Active Directory identity the access policy is for</param>
+            <returns>the update stage of the access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Update#IWithAccessPolicy#WithAccessPolicy(Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy)">
+            <summary>
+            Attach an existing access policy.
+            </summary>
+            <param name="accessPolicy">accessPolicy the existing access policy</param>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultImpl.Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IWithSku#WithSku(Microsoft.Azure.Management.KeyVault.Fluent.Models.SkuName)">
+            <summary>
+            Specifies the sku of the key vault.
+            </summary>
+            <param name="skuName">skuName the sku</param>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl">
+             <summary>
+             The implementation of Vaults and its parent interfaces.
+             </summary>
+            GENTHASH:Y29tLm1pY3Jvc29mdC5henVyZS5tYW5hZ2VtZW50LmtleXZhdWx0LmltcGxlbWVudGF0aW9uLlZhdWx0c0ltcGw=
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.#ctor(Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManager,Microsoft.Azure.Management.Graph.RBAC.Fluent.IGraphRbacManager,System.String)">
+            GENMHASH:CDB7D4D816159A58F5240A4C88E5241C:4E00EDDBAADBA44B155253E3B63448A4
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.ListInnerAsync(System.Threading.CancellationToken)">
+            GENMHASH:7D6013E8B95E991005ED921F493EFCE4:6FB4EA69673E1D8A74E1418EB52BB9FE
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.ListInnerByGroupAsync(System.String,System.Threading.CancellationToken)">
+            GENMHASH:95834C6C7DA388E666B705A62A7D02BF:BDFF4CB61E8A8D975417EA5FC914921A
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.GetInnerByGroupAsync(System.String,System.String,System.Threading.CancellationToken)">
+            GENMHASH:AB63F782DA5B8D22523A284DAD664D17:7C0A1D0C3FE28C45F35B565F4AFF751D
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.DeleteInnerByGroupAsync(System.String,System.String,System.Threading.CancellationToken)">
+            GENMHASH:0679DF8CA692D1AC80FC21655835E678:B9B028D620AC932FDF66D2783E476B0D
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.Define(System.String)">
+            GENMHASH:8ACFB0E23F5F24AD384313679B65F404:913702868132D01F4C836BBF3499B8CE
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.WrapModel(System.String)">
+            GENMHASH:2FE8C4C2D5EAD7E37787838DE0B47D92:CF5D7C4F8C9C8500DA16344A95E02A83
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.WrapModel(Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultInner)">
+            GENMHASH:CA260E89048F01F05DD7D13D870D6A8F:92A42C7FBDAE00431C015493416F3C0F
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#CollectionActions#ISupportsCreating{Microsoft#Azure#Management#KeyVault#Fluent#Vault#Definition#IBlank}#Define(System.String)" -->
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#CollectionActions#ISupportsDeletingById#DeleteById(System.String)">
+            <summary>
+            Deletes a resource from Azure, identifying it by its resource ID.
+            </summary>
+            <param name="id">id the resource ID of the resource to delete</param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#CollectionActions#ISupportsListingByResourceGroup{Microsoft#Azure#Management#KeyVault#Fluent#IVault}#ListByResourceGroup(System.String)">
+            <summary>
+            Lists resources of the specified type in the specified resource group.
+            </summary>
+            <param name="resourceGroupName">resourceGroupName the name of the resource group to list the resources from</param>
+            <returns>the list of resources</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#CollectionActions#ISupportsGettingByResourceGroup{Microsoft#Azure#Management#KeyVault#Fluent#IVault}#GetByResourceGroup(System.String,System.String)">
+            <summary>
+            Gets the information about a resource from Azure based on the resource name and the name of its resource group.
+            </summary>
+            <param name="resourceGroupName">resourceGroupName the name of the resource group the resource is in</param>
+            <param name="name">name the name of the resource. (Note, this is not the ID)</param>
+            <returns>an immutable representation of the resource</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#CollectionActions#ISupportsDeletingByResourceGroup#DeleteByResourceGroupAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a resource from Azure, identifying it by its name and its resource group.
+            </summary>
+            <param name="groupName">groupName The group the resource is part of</param>
+            <param name="name">name The name of the resource</param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsImpl.Microsoft#Azure#Management#ResourceManager#Fluent#Core#CollectionActions#ISupportsListing{Microsoft#Azure#Management#KeyVault#Fluent#IVault}#List">
+            <summary>
+            Lists all the resources of the specified type in the currently selected subscription.
+            </summary>
+            <returns>list of resources</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy">
+            <summary>
+            An immutable client-side representation of a key vault access policy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy.TenantId">
+            <returns>The Azure Active Directory tenant ID that should be used for</returns>
+            <returns>authenticating requests to the key vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy.ObjectId">
+            <returns>The object ID of a user or service principal in the Azure Active</returns>
+            <returns>Directory tenant for the vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy.ApplicationId">
+            <returns>Application ID of the client making request on behalf of a principal.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy.Permissions">
+            <returns>Permissions the identity has for keys and secrets.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.IVault">
+            <summary>
+            An immutable client-side representation of an Azure Key Vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IVault.VaultUri">
+            <returns>the URI of the vault for performing operations on keys and secrets.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IVault.TenantId">
+            <returns>the Azure Active Directory tenant ID that should be used for</returns>
+            <returns>authenticating requests to the key vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IVault.Sku">
+            <returns>SKU details.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IVault.AccessPolicies">
+            <returns>an array of 0 to 16 identities that have access to the key vault. All</returns>
+            <returns>identities in the array must use the same tenant ID as the key vault's</returns>
+            <returns>tenant ID.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IVault.EnabledForDeployment">
+            <returns>whether Azure Virtual Machines are permitted to</returns>
+            <returns>retrieve certificates stored as secrets from the key vault.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IVault.EnabledForDiskEncryption">
+            <returns>whether Azure Disk Encryption is permitted to</returns>
+            <returns>retrieve secrets from the vault and unwrap keys.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IVault.EnabledForTemplateDeployment">
+            <returns>whether Azure Resource Manager is permitted to</returns>
+            <returns>retrieve secrets from the key vault.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.IVaults">
+            <summary>
+            Entry point for key vaults management API.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithAttach`1" -->
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IBlank`1" -->
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IDefinition`1" -->
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithPermissions`1" -->
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithPermissions`1.AllowKeyAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithPermissions`1.AllowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithPermissions`1.AllowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithPermissions`1.AllowSecretAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithPermissions`1.AllowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithPermissions`1.AllowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithIdentity`1" -->
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithIdentity`1.ForObjectId(System.Guid)">
+            <summary>
+            Specifies the object ID of the Active Directory identity this access policy is for.
+            </summary>
+            <param name="objectId">objectId the object ID of the AD identity</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithIdentity`1.ForUser(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryUser)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="user">user the AD user object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithIdentity`1.ForUser(System.String)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="userPrincipalName">userPrincipalName the user principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithIdentity`1.ForGroup(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryGroup)">
+            <summary>
+            Specifies the Active Directory group this access policy is for.
+            </summary>
+            <param name="group">group the AD group object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithIdentity`1.ForServicePrincipal(Microsoft.Azure.Management.Graph.RBAC.Fluent.IServicePrincipal)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipal">servicePrincipal the AD service principal object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Definition.IWithIdentity`1.ForServicePrincipal(System.String)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipalName">servicePrincipalName the service principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions">
+            <summary>
+            The access policy update stage allowing permissions to be added or removed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.AllowKeyAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.AllowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.AllowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.DisallowKeyAllPermissions">
+            <summary>
+            Revoke all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.DisallowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Revoke a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.DisallowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Revoke a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.AllowSecretAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.AllowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.AllowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.DisallowSecretAllPermissions">
+            <summary>
+            Revoke all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.DisallowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Revoke a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IWithPermissions.DisallowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Revoke a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions to revoke</param>
+            <returns>the next stage of access policy update</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.Update.IUpdate">
+            <summary>
+            The entirety of an access policy update as part of a key vault update.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithAttach`1" -->
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithIdentity`1" -->
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithIdentity`1.ForObjectId(System.Guid)">
+            <summary>
+            Specifies the object ID of the Active Directory identity this access policy is for.
+            </summary>
+            <param name="objectId">objectId the object ID of the AD identity</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithIdentity`1.ForUser(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryUser)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="user">user the AD user object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithIdentity`1.ForUser(System.String)">
+            <summary>
+            Specifies the Active Directory user this access policy is for.
+            </summary>
+            <param name="userPrincipalName">userPrincipalName the user principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithIdentity`1.ForGroup(Microsoft.Azure.Management.Graph.RBAC.Fluent.IActiveDirectoryGroup)">
+            <summary>
+            Specifies the Active Directory group this access policy is for.
+            </summary>
+            <param name="group">group the AD group object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithIdentity`1.ForServicePrincipal(Microsoft.Azure.Management.Graph.RBAC.Fluent.IServicePrincipal)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipal">servicePrincipal the AD service principal object</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithIdentity`1.ForServicePrincipal(System.String)">
+            <summary>
+            Specifies the Active Directory service principal this access policy is for.
+            </summary>
+            <param name="servicePrincipalName">servicePrincipalName the service principal name of the AD user</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithPermissions`1" -->
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithPermissions`1.AllowKeyAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access keys.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithPermissions`1.AllowKeyPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithPermissions`1.AllowKeyPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.KeyPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access keys.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithPermissions`1.AllowSecretAllPermissions">
+            <summary>
+            Allow all permissions for the AD identity to access secrets.
+            </summary>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithPermissions`1.AllowSecretPermissions(Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions[])">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IWithPermissions`1.AllowSecretPermissions(System.Collections.Generic.IList{Microsoft.Azure.Management.KeyVault.Fluent.Models.SecretPermissions})">
+            <summary>
+            Allow a list of permissions for the AD identity to access secrets.
+            </summary>
+            <param name="permissions">permissions the list of permissions allowed</param>
+            <returns>the next stage of access policy definition</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IUpdateDefinition`1" -->
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.Azure.Management.KeyVault.Fluent.AccessPolicy.UpdateDefinition.IBlank`1" -->
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithConfigurations">
+            <summary>
+            A key vault definition allowing various configurations to be set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithConfigurations.WithDeploymentEnabled">
+            <summary>
+            Enable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithConfigurations.WithDiskEncryptionEnabled">
+            <summary>
+            Enable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithConfigurations.WithTemplateDeploymentEnabled">
+            <summary>
+            Enable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithConfigurations.WithDeploymentDisabled">
+            <summary>
+            Disable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithConfigurations.WithDiskEncryptionDisabled">
+            <summary>
+            Disable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithConfigurations.WithTemplateDeploymentDisabled">
+            <summary>
+            Disable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithSku">
+            <summary>
+            A key vault definition allowing the sku to be set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithSku.WithSku(Microsoft.Azure.Management.KeyVault.Fluent.Models.SkuName)">
+            <summary>
+            Specifies the sku of the key vault.
+            </summary>
+            <param name="skuName">skuName the sku</param>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IDefinition">
+            <summary>
+            Container interface for all the definitions that need to be implemented.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithAccessPolicy">
+            <summary>
+            A key vault definition allowing access policies to be attached.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithAccessPolicy.WithEmptyAccessPolicy">
+            <summary>
+            Attach no access policy.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithAccessPolicy.WithAccessPolicy(Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy)">
+            <summary>
+            Attach an existing access policy.
+            </summary>
+            <param name="accessPolicy">accessPolicy the existing access policy</param>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithAccessPolicy.DefineAccessPolicy">
+            <summary>
+            Begins the definition of a new access policy to be added to this key vault.
+            </summary>
+            <returns>the first stage of the access policy definition</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IBlank">
+            <summary>
+            The first stage of the key vault definition.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithGroup">
+            <summary>
+            A key vault definition allowing resource group to be set.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Definition.IWithCreate">
+            <summary>
+            A key vault definition with sufficient inputs to create a new
+            storage account in the cloud, but exposing additional optional inputs to
+            specify.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithConfigurations">
+            <summary>
+            A key vault update allowing various configurations to be set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithConfigurations.WithDeploymentEnabled">
+            <summary>
+            Enable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithConfigurations.WithDiskEncryptionEnabled">
+            <summary>
+            Enable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithConfigurations.WithTemplateDeploymentEnabled">
+            <summary>
+            Enable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithConfigurations.WithDeploymentDisabled">
+            <summary>
+            Disable Azure Virtual Machines to retrieve certificates stored as secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithConfigurations.WithDiskEncryptionDisabled">
+            <summary>
+            Disable Azure Disk Encryption to retrieve secrets from the vault and unwrap keys.
+            </summary>
+            <returns>the next stage of key vault definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithConfigurations.WithTemplateDeploymentDisabled">
+            <summary>
+            Disable Azure Resource Manager to retrieve secrets from the key vault.
+            </summary>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IUpdate">
+            <summary>
+            The template for a key vault update operation, containing all the settings that can be modified.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithAccessPolicy">
+            <summary>
+            A key vault update allowing access policies to be modified, attached, or removed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithAccessPolicy.WithoutAccessPolicy(System.String)">
+            <summary>
+            Remove an access policy from the access policy list.
+            </summary>
+            <param name="objectId">objectId the object ID of the Active Directory identity the access policy is for</param>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithAccessPolicy.WithAccessPolicy(Microsoft.Azure.Management.KeyVault.Fluent.IAccessPolicy)">
+            <summary>
+            Attach an existing access policy.
+            </summary>
+            <param name="accessPolicy">accessPolicy the existing access policy</param>
+            <returns>the key vault update stage</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithAccessPolicy.DefineAccessPolicy">
+            <summary>
+            Begins the definition of a new access policy to be added to this key vault.
+            </summary>
+            <returns>the first stage of the access policy definition</returns>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.Vault.Update.IWithAccessPolicy.UpdateAccessPolicy(System.String)">
+            <summary>
+            Begins the update of an existing access policy attached to this key vault.
+            </summary>
+            <param name="objectId">objectId the object ID of the Active Directory identity the access policy is for</param>
+            <returns>the update stage of the access policy definition</returns>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient">
+            <summary>
+            The Azure management API provides a RESTful set of web services that
+            interact with Azure Key Vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.BaseUri">
+            <summary>
+            The base URI of the service.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.SerializationSettings">
+            <summary>
+            Gets or sets json serialization settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.DeserializationSettings">
+            <summary>
+            Gets or sets json deserialization settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.Credentials">
+            <summary>
+            Credentials needed for the client to connect to Azure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.SubscriptionId">
+            <summary>
+            Gets subscription credentials which uniquely identify Microsoft
+            Azure subscription. The subscription ID forms part of the URI for
+            every service call.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.ApiVersion">
+            <summary>
+            Client Api Version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.AcceptLanguage">
+            <summary>
+            Gets or sets the preferred language for the response.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.LongRunningOperationRetryTimeout">
+            <summary>
+            Gets or sets the retry timeout in seconds for Long Running
+            Operations. Default value is 30.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.GenerateClientRequestId">
+            <summary>
+            When set to true a unique x-ms-client-request-id value is generated
+            and included in each request. Default is true.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.IKeyVaultManagementClient.Vaults">
+            <summary>
+            Gets the IVaultsOperations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations">
+            <summary>
+            VaultsOperations operations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations.CreateOrUpdateWithHttpMessagesAsync(System.String,System.String,Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Create or update a key vault in the specified subscription.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the server belongs.
+            </param>
+            <param name='vaultName'>
+            Name of the vault
+            </param>
+            <param name='parameters'>
+            Parameters to create or update the vault
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations.DeleteWithHttpMessagesAsync(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the specified Azure key vault.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault to delete
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations.GetWithHttpMessagesAsync(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Gets the specified Azure key vault.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault.
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations.ListByResourceGroupWithHttpMessagesAsync(System.String,System.Nullable{System.Int32},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated
+            with the subscription and within the specified resource group.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations.ListWithHttpMessagesAsync(System.Nullable{System.Int32},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated
+            with the subscription.
+            </summary>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations.ListByResourceGroupNextWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated
+            with the subscription and within the specified resource group.
+            </summary>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations.ListNextWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated
+            with the subscription.
+            </summary>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+            <param name='customHeaders'>
+            The headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient">
+            <summary>
+            The Azure management API provides a RESTful set of web services that
+            interact with Azure Key Vault.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.BaseUri">
+            <summary>
+            The base URI of the service.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.SerializationSettings">
+            <summary>
+            Gets or sets json serialization settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.DeserializationSettings">
+            <summary>
+            Gets or sets json deserialization settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.Credentials">
+            <summary>
+            Credentials needed for the client to connect to Azure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.SubscriptionId">
+            <summary>
+            Gets subscription credentials which uniquely identify Microsoft Azure
+            subscription. The subscription ID forms part of the URI for every service
+            call.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.ApiVersion">
+            <summary>
+            Client Api Version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.AcceptLanguage">
+            <summary>
+            Gets or sets the preferred language for the response.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.LongRunningOperationRetryTimeout">
+            <summary>
+            Gets or sets the retry timeout in seconds for Long Running Operations.
+            Default value is 30.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.GenerateClientRequestId">
+            <summary>
+            When set to true a unique x-ms-client-request-id value is generated and
+            included in each request. Default is true.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.Vaults">
+            <summary>
+            Gets the IVaultsOperations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='rootHandler'>
+            Optional. The http client handler used to handle http transport.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(System.Uri,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='baseUri'>
+            Optional. The base URI of the service.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(System.Uri,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='baseUri'>
+            Optional. The base URI of the service.
+            </param>
+            <param name='rootHandler'>
+            Optional. The http client handler used to handle http transport.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(Microsoft.Rest.ServiceClientCredentials,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='credentials'>
+            Required. Credentials needed for the client to connect to Azure.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(Microsoft.Rest.ServiceClientCredentials,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='credentials'>
+            Required. Credentials needed for the client to connect to Azure.
+            </param>
+            <param name='rootHandler'>
+            Optional. The http client handler used to handle http transport.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(System.Uri,Microsoft.Rest.ServiceClientCredentials,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='baseUri'>
+            Optional. The base URI of the service.
+            </param>
+            <param name='credentials'>
+            Required. Credentials needed for the client to connect to Azure.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.#ctor(System.Uri,Microsoft.Rest.ServiceClientCredentials,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the KeyVaultManagementClient class.
+            </summary>
+            <param name='baseUri'>
+            Optional. The base URI of the service.
+            </param>
+            <param name='credentials'>
+            Required. Credentials needed for the client to connect to Azure.
+            </param>
+            <param name='rootHandler'>
+            Optional. The http client handler used to handle http transport.
+            </param>
+            <param name='handlers'>
+            Optional. The delegating handlers to add to the http client pipeline.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient.Initialize">
+            <summary>
+            Initializes client properties.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations">
+            <summary>
+            VaultsOperations operations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.#ctor(Microsoft.Azure.Management.KeyVault.Fluent.KeyVaultManagementClient)">
+            <summary>
+            Initializes a new instance of the VaultsOperations class.
+            </summary>
+            <param name='client'>
+            Reference to the service client.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+        </member>
+        <member name="P:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.Client">
+            <summary>
+            Gets a reference to the KeyVaultManagementClient
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.CreateOrUpdateWithHttpMessagesAsync(System.String,System.String,Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Create or update a key vault in the specified subscription.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the server belongs.
+            </param>
+            <param name='vaultName'>
+            Name of the vault
+            </param>
+            <param name='parameters'>
+            Parameters to create or update the vault
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.DeleteWithHttpMessagesAsync(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Deletes the specified Azure key vault.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault to delete
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.GetWithHttpMessagesAsync(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            Gets the specified Azure key vault.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault.
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.ListByResourceGroupWithHttpMessagesAsync(System.String,System.Nullable{System.Int32},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription and within the specified resource group.
+            </summary>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.ListWithHttpMessagesAsync(System.Nullable{System.Int32},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription.
+            </summary>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.ListByResourceGroupNextWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription and within the specified resource group.
+            </summary>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperations.ListNextWithHttpMessagesAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription.
+            </summary>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+            <param name='customHeaders'>
+            Headers that will be added to request.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+            <exception cref="T:Microsoft.Rest.Azure.CloudException">
+            Thrown when the operation returned an invalid status code
+            </exception>
+            <exception cref="T:Microsoft.Rest.SerializationException">
+            Thrown when unable to deserialize the response
+            </exception>
+            <exception cref="T:Microsoft.Rest.ValidationException">
+            Thrown when a required parameter is null
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when a required parameter is null
+            </exception>
+            <return>
+            A response object containing the response body and response headers.
+            </return>
+        </member>
+        <member name="T:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions">
+            <summary>
+            Extension methods for VaultsOperations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.CreateOrUpdate(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.String,Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner)">
+            <summary>
+            Create or update a key vault in the specified subscription.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the server belongs.
+            </param>
+            <param name='vaultName'>
+            Name of the vault
+            </param>
+            <param name='parameters'>
+            Parameters to create or update the vault
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.CreateOrUpdateAsync(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.String,Microsoft.Azure.Management.KeyVault.Fluent.Models.VaultCreateOrUpdateParametersInner,System.Threading.CancellationToken)">
+            <summary>
+            Create or update a key vault in the specified subscription.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the server belongs.
+            </param>
+            <param name='vaultName'>
+            Name of the vault
+            </param>
+            <param name='parameters'>
+            Parameters to create or update the vault
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.Delete(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.String)">
+            <summary>
+            Deletes the specified Azure key vault.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault to delete
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.DeleteAsync(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Deletes the specified Azure key vault.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault to delete
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.Get(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.String)">
+            <summary>
+            Gets the specified Azure key vault.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.GetAsync(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets the specified Azure key vault.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='vaultName'>
+            The name of the vault.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.ListByResourceGroup(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.Nullable{System.Int32})">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription and within the specified resource group.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.ListByResourceGroupAsync(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription and within the specified resource group.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='resourceGroupName'>
+            The name of the Resource Group to which the vault belongs.
+            </param>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.List(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.Nullable{System.Int32})">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.ListAsync(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='top'>
+            Maximum number of results to return.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.ListByResourceGroupNext(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription and within the specified resource group.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.ListByResourceGroupNextAsync(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription and within the specified resource group.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.ListNext(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+        </member>
+        <member name="M:Microsoft.Azure.Management.KeyVault.Fluent.VaultsOperationsExtensions.ListNextAsync(Microsoft.Azure.Management.KeyVault.Fluent.IVaultsOperations,System.String,System.Threading.CancellationToken)">
+            <summary>
+            The List operation gets information about the vaults associated with the
+            subscription.
+            </summary>
+            <param name='operations'>
+            The operations group for this extension method.
+            </param>
+            <param name='nextPageLink'>
+            The NextLink from the previous successful call to List operation.
+            </param>
+            <param name='cancellationToken'>
+            The cancellation token.
+            </param>
+        </member>
+    </members>
+</doc>

@@ -35,32 +35,32 @@ namespace AzRdp
                 return;
             }
 
-            azure.VirtualMachines.Define("__azrdp")
-                                 .WithRegion("FIXME")
-                                 .WithExistingResourceGroup("FIXME")
-                                 .WithExistingPrimaryNetwork()
-                                 .WithSubnet()
-                                 .WithPrimaryPrivateIPAddressDynamic()
-                                 .WithNewPrimaryPublicIPAddress("leafdnslabel")
-                                 .WithPopularLinuxImage(KnownLinuxVirtualMachineImage.)
-                                 .WithRootUsername("azrdp")
-                                 .WithSsh("FIXME:public key")
-                                 .WithSize(VirtualMachineSizeTypes.StandardA1)
+            // azure.VirtualMachines.Define("__azrdp")
+            //                      .WithRegion("FIXME")
+            //                      .WithExistingResourceGroup("FIXME")
+            //                      .WithExistingPrimaryNetwork()
+            //                      .WithSubnet()
+            //                      .WithPrimaryPrivateIPAddressDynamic()
+            //                      .WithNewPrimaryPublicIPAddress("leafdnslabel")
+            //                      .WithPopularLinuxImage(KnownLinuxVirtualMachineImage.)
+            //                      .WithRootUsername("azrdp")
+            //                      .WithSsh("FIXME:public key")
+            //                      .WithSize(VirtualMachineSizeTypes.StandardA1)
 
             // FIXME: move to method
-            logger.TraceEvent(TraceEventType.Verbose, 0, "Searching for the subnet containing a given IP address...");
-            foreach (var network in azure.Networks.List()) {
-                if (string.Equals(options.ResourceGroupName, network.ResourceGroupName, StringComparison.OrdinalIgnoreCase)) {
-                    foreach (var addressSpace in network.AddressSpaces) {
-                        var ipNetwork = IPNetwork.Parse(addressSpace);
-                        if (IPNetwork.Contains(ipNetwork, virtualMachineIPAddress)) {
-                            foreach (var subnet in network.Subnets.Values) {
+            // logger.TraceEvent(TraceEventType.Verbose, 0, "Searching for the subnet containing a given IP address...");
+            // foreach (var network in azure.Networks.List()) {
+            //     if (string.Equals(options.ResourceGroupName, network.ResourceGroupName, StringComparison.OrdinalIgnoreCase)) {
+            //         foreach (var addressSpace in network.AddressSpaces) {
+            //             var ipNetwork = IPNetwork.Parse(addressSpace);
+            //             if (IPNetwork.Contains(ipNetwork, virtualMachineIPAddress)) {
+            //                 foreach (var subnet in network.Subnets.Values) {
                                 
-                            }
-                        }
-                    }
-                }
-            }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
 
             // FIXME: not sure if I really need do this
             // var vm = FindVirtualMachine(azure, options.ResourceGroupName, options.VirtualMachineIPAddress);
