@@ -121,9 +121,9 @@ namespace Microsoft.Diagnostics.Utilities
                 {
                     Directory.Delete(dirs[i]);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    // TODO trace message;
+                    Trace.TraceError(ex.ToString());
                     ret = false;
                 }
             }

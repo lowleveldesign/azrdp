@@ -122,6 +122,7 @@ namespace Utilities
         {
             get
             {
+                if (s_supportFileDir == null)
                 {
                     var exeLastWriteTime = File.GetLastWriteTime(ExePath);
                     var version = exeLastWriteTime.ToString("VER.yyyy'-'MM'-'dd'.'HH'.'mm'.'ss.fff");

@@ -28,7 +28,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
             this.virtualMachineIPAddress = virtualMachineIPAddress;
         }
 
-        public async Task DeployAndStart(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task DeployAndStart(string rootUsername, string sshPublicKey, CancellationToken cancellationToken = default(CancellationToken))
         {
             // FIXME: generate public and private key
             await FindVnetByIPAddress();
@@ -37,23 +37,25 @@ namespace LowLevelDesign.AzureRemoteDesktop
             Debug.Assert(virtualMachineVnet != null);
             Debug.Assert(virtualMachineSubnet != null);
 
-            jumpBoxName = Guid.NewGuid().ToString("n");
+            var baseName = Guid.NewGuid().ToString("n");
+            jumpBoxName = baseName + "-vm";
 
-            Logger.Log.TraceEvent(TraceEventType.Information, 0, "Creating virtual machine and public IP, both named: '{0}'", jumpBoxName);
             jumpBox = await azure.VirtualMachines.Define(jumpBoxName)
                                  .WithRegion(virtualMachineVnet.RegionName)
                                  .WithExistingResourceGroup(resourceGroupName)
                                  .WithExistingPrimaryNetwork(virtualMachineVnet)
-                                 .WithSubnet(virtualMachineSubnet.Name) // FIXME: maybe should be key?
+                                 .WithSubnet(virtualMachineSubnet.Name)
                                  .WithPrimaryPrivateIPAddressDynamic()
                                  .WithNewPrimaryPublicIPAddress(
-                                    azure.PublicIPAddresses.Define(jumpBoxName)
-                                        .WithRegion("test")
-                                        .WithExistingResourceGroup(resourceGroupName)
-                                 )
+                                      azure.PublicIPAddresses.Define(baseName + "-ip")
+                                            .WithRegion(virtualMachineVnet.RegionName)
+                                            .WithExistingResourceGroup(resourceGroupName)
+                                            .WithDynamicIP()
+                                            .WithLeafDomainLabel("ip-" + baseName)
+                                  )
                                  .WithPopularLinuxImage(KnownLinuxVirtualMachineImage.UbuntuServer14_04_Lts)
-                                 .WithRootUsername("azrdp")
-                                 .WithSsh("FIXME:public key")
+                                 .WithRootUsername(rootUsername)
+                                 .WithSsh(sshPublicKey)
                                  .WithSize(VirtualMachineSizeTypes.StandardA0)
                                  .CreateAsync(cancellationToken);
         }
@@ -92,21 +94,9 @@ namespace LowLevelDesign.AzureRemoteDesktop
                     "'{virtualMachineIPAddress}' in a resource group '{resourceGroupName}'");
         }
 
-
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
             // FIXME: remove Azure resources
-        }
-
-        ~AzureJumpBox()
-        {
-            Dispose(false);
         }
     }
 }
