@@ -30,7 +30,6 @@ namespace LowLevelDesign.AzureRemoteDesktop
 
         public async Task DeployAndStart(string rootUsername, string sshPublicKey, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // FIXME: generate public and private key
             await FindVnetByIPAddress();
             FindSubnetNameByIPAddress();
 

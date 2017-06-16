@@ -37,71 +37,11 @@
     <Reference Include="CommandLine">
       <HintPath>binaries\CommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Azure.Management.AppService.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.AppService.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Batch.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Batch.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Cdn.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Cdn.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Compute.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Compute.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.ContainerRegistry.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.ContainerRegistry.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Dns.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Dns.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.DocumentDB.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.DocumentDB.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Graph.RBAC.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Graph.RBAC.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.KeyVault.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.KeyVault.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Network.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Network.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Redis.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Redis.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.ResourceManager.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.ResourceManager.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.ServiceBus.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.ServiceBus.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Sql.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Sql.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.Storage.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.Storage.Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Management.TrafficManager.Fluent">
-      <HintPath>binaries\Microsoft.Azure.Management.TrafficManager.Fluent.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
       <HintPath>binaries\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms">
       <HintPath>binaries\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Rest.ClientRuntime">
-      <HintPath>binaries\Microsoft.Rest.ClientRuntime.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Rest.ClientRuntime.Azure">
-      <HintPath>binaries\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Rest.ClientRuntime.Azure.Authentication">
-      <HintPath>binaries\Microsoft.Rest.ClientRuntime.Azure.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -118,6 +58,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ARMClient.Authentication\AADAuthentication\AuthHelper.cs" />
+    <Compile Include="ARMClient.Authentication\AADAuthentication\BaseAuthHelper.cs" />
+    <Compile Include="ARMClient.Authentication\AADAuthentication\PersistentAuthHelper.cs" />
+    <Compile Include="ARMClient.Authentication\Constants.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\AzureEnvironments.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\CustomTokenCache.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\ResultOf.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\SubscriptionCacheInfo.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\SubscriptionInfo.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\TenantCacheInfo.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\TenantDetails.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\TenantInfo.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\TokenCacheInfo.cs" />
+    <Compile Include="ARMClient.Authentication\Contracts\VerifiedDomain.cs" />
+    <Compile Include="ARMClient.Authentication\EnvironmentStorage\FileEnvironmentStorage.cs" />
+    <Compile Include="ARMClient.Authentication\EnvironmentStorage\IEnvironmentStorage.cs" />
+    <Compile Include="ARMClient.Authentication\EnvironmentStorage\MemoryEnvironmentStorage.cs" />
+    <Compile Include="ARMClient.Authentication\IAuthHelper.cs" />
+    <Compile Include="ARMClient.Authentication\TenantStorage\ITenantStorage.cs" />
+    <Compile Include="ARMClient.Authentication\TenantStorage\MemoryTenantStorage.cs" />
+    <Compile Include="ARMClient.Authentication\TokenStorage\ITokenStorage.cs" />
+    <Compile Include="ARMClient.Authentication\TokenStorage\MemoryTokenStorage.cs" />
+    <Compile Include="ARMClient.Authentication\Utilities\Utils.cs" />
     <Compile Include="AzureJumpBox.cs" />
     <Compile Include="IPNetwork\BigIntegerExt.cs" />
     <Compile Include="IPNetwork\IPAddressCollection.cs" />
@@ -136,10 +99,9 @@
     <Compile Include="Utilities\SupportFiles.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="binaries\Microsoft.Rest.ClientRuntime.Azure.Authentication.runtimeconfig.json" />
-    <None Include="binaries\Microsoft.Rest.ClientRuntime.Azure.runtimeconfig.json" />
-    <None Include="binaries\Microsoft.Rest.ClientRuntime.runtimeconfig.json" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="LICENSE" />
   </ItemGroup>
   <ItemGroup>
@@ -153,95 +115,10 @@
       <WithCulture>false</WithCulture>
       <LogicalName>.\ssh.exe</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.AppService.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.AppService.Fluent.dll</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="binaries\CommandLine.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\CommandLine.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Batch.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Batch.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Cdn.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Cdn.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Compute.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Compute.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.ContainerRegistry.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.ContainerRegistry.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Dns.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Dns.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.DocumentDB.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.DocumentDB.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Graph.RBAC.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Graph.RBAC.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.KeyVault.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.KeyVault.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Network.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Network.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Redis.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Redis.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.ResourceManager.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.ResourceManager.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.ServiceBus.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.ServiceBus.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Sql.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Sql.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.Storage.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.Storage.Fluent.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Azure.Management.TrafficManager.Fluent.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Azure.Management.TrafficManager.Fluent.dll</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="binaries\Microsoft.IdentityModel.Clients.ActiveDirectory.dll">
       <Type>Non-Resx</Type>
@@ -252,21 +129,6 @@
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Rest.ClientRuntime.Azure.Authentication.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Rest.ClientRuntime.Azure.Authentication.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Rest.ClientRuntime.Azure.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Rest.ClientRuntime.Azure.dll</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.Rest.ClientRuntime.dll">
-      <Type>Non-Resx</Type>
-      <WithCulture>false</WithCulture>
-      <LogicalName>.\Microsoft.Rest.ClientRuntime.dll</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="binaries\Newtonsoft.Json.dll">
       <Type>Non-Resx</Type>
