@@ -98,7 +98,7 @@ namespace ARMClient.Authentication
 
         public static Lazy<string> UserAgent = new Lazy<string>(() =>
         {
-            return "ARMClient/" + FileVersion.Value;
+            return "azrdp/" + FileVersion.Value;
         });
 
         public const string AADCommonTenant = "common";

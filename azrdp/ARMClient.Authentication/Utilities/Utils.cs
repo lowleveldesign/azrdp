@@ -241,7 +241,7 @@ namespace ARMClient.Authentication.Utilities
             }
         }
 
-        public static Uri EnsureAbsoluteUri(string path, PersistentAuthHelper persistentAuthHelper)
+        public static Uri EnsureAbsoluteUri(string path)
         {
             Uri ret;
             if (Uri.TryCreate(path, UriKind.Absolute, out ret))
@@ -249,7 +249,8 @@ namespace ARMClient.Authentication.Utilities
                 return ret;
             }
 
-            var env = persistentAuthHelper.IsCacheValid() ? persistentAuthHelper.AzureEnvironments : AzureEnvironments.Prod;
+            // FIXME: var env = persistentAuthHelper.IsCacheValid() ? persistentAuthHelper.AzureEnvironments : AzureEnvironments.Prod;
+            var env = AzureEnvironments.Prod;
             var parts = path.Split(new[] { '/', '?' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length <= 0
                 || String.Equals(parts[0], "tenants", StringComparison.OrdinalIgnoreCase)

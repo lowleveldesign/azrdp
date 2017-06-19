@@ -1,5 +1,6 @@
-﻿using CommandLine;
-using Microsoft.Azure.Management.Fluent;
+﻿using ARMClient.Authentication.AADAuthentication;
+using ARMClient.Authentication.Utilities;
+using CommandLine;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -32,14 +33,20 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 Logger.Level = SourceLevels.Verbose;
             }
 
-            var azure = Azure.Authenticate(options.CredentialFilePath).WithDefaultSubscription(); // FIXME to change
+            var resourceManager = new AzureResourceManager();
+            resourceManager.AuthenticateWithPrompt().Wait();
 
-            if (options.VirtualMachineIPAddress == null || options.ResourceGroupName == null) {
-                // we only list available virtual machines
-                if (!LetUserChooseTheVirtualMachine(azure, options)) {
-                    return;
-                }
-            }
+            var cancellationToken = new CancellationToken();
+
+            var subscriptions = resourceManager.GetAsync("/subscriptions", cancellationToken).Result;
+            Console.WriteLine(subscriptions.ToString());
+
+            //if (options.VirtualMachineIPAddress == null || options.ResourceGroupName == null) {
+            //    // we only list available virtual machines
+            //    if (!LetUserChooseTheVirtualMachine(azure, options)) {
+            //        return;
+            //    }
+            //}
 
             IPAddress virtualMachineIPAddress;
             if (!IPAddress.TryParse(options.VirtualMachineIPAddress, out virtualMachineIPAddress)) {
@@ -47,25 +54,14 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 return;
             }
 
-            var cancellationToken = new CancellationToken();
-
-            var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
+            // FIXME var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
             try {
                 var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir);
                 if (!openSSHWrapper.IsKeyFileLoaded) {
                     openSSHWrapper.GenerateKeyFileInUserProfile();
                 }
                 Console.WriteLine("Provisioning VM with Public IP in Azure ...");
-                var deployTask = azureJumpBox.DeployAndStart("azrdp", openSSHWrapper.GetPublicKey(), cancellationToken);
-                while (!deployTask.IsCompleted) {
-                    Thread.Sleep(TimeSpan.FromSeconds(5));
-                    Console.Write(".");
-                }
-                Console.WriteLine();
-
-                if (deployTask.IsFaulted) {
-                    deployTask.GetAwaiter().GetResult();
-                }
+                // FIXME provision
 
                 // FIXME: start openssh in a hidden window - I should add a port parameter
                 openSSHWrapper.StartOpenSSHSession();
@@ -75,31 +71,31 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 Console.WriteLine("ERROR: error occurred while deploying the machine. Full details:");
                 Console.WriteLine(ex);
             } finally {
-                azureJumpBox.Dispose();
+                //FIXME: azureJumpBox.Dispose(); - should I use the destructor
             }
         }
 
-        static bool LetUserChooseTheVirtualMachine(IAzure azure, Options options)
-        {
-            Console.WriteLine("Please choose the VM you would like to connect to:");
-            Console.WriteLine("-------------------------------------------------");
-            var vms = azure.VirtualMachines.List().ToArray();
-            for (int i = 0; i < vms.Length; i++) {
-                var vm = vms[i];
-                Console.WriteLine($" [{i + 1}] '{vm.Name}' ({vm.PowerState}), resource group: '{vm.ResourceGroupName}', " +
-                    "ip: {vm.GetPrimaryNetworkInterface().PrimaryPrivateIP}");
-            }
-            Console.Write("VM (choose number): ");
-            string response = Console.ReadLine();
-            int vmind;
-            if (!int.TryParse(response, out vmind) || (vmind - 1) >= vms.Length || vmind < 1) {
-                Console.Error.WriteLine("ERROR: number out of range");
-                return false;
-            }
-            options.ResourceGroupName = vms[vmind - 1].ResourceGroupName;
-            options.VirtualMachineIPAddress = vms[vmind - 1].GetPrimaryNetworkInterface().PrimaryPrivateIP;
-            return true;
-        }
+        //static bool LetUserChooseTheVirtualMachine(IAzure azure, Options options)
+        //{
+        //    Console.WriteLine("Please choose the VM you would like to connect to:");
+        //    Console.WriteLine("-------------------------------------------------");
+        //    var vms = azure.VirtualMachines.List().ToArray();
+        //    for (int i = 0; i < vms.Length; i++) {
+        //        var vm = vms[i];
+        //        Console.WriteLine($" [{i + 1}] '{vm.Name}' ({vm.PowerState}), resource group: '{vm.ResourceGroupName}', " +
+        //            "ip: {vm.GetPrimaryNetworkInterface().PrimaryPrivateIP}");
+        //    }
+        //    Console.Write("VM (choose number): ");
+        //    string response = Console.ReadLine();
+        //    int vmind;
+        //    if (!int.TryParse(response, out vmind) || (vmind - 1) >= vms.Length || vmind < 1) {
+        //        Console.Error.WriteLine("ERROR: number out of range");
+        //        return false;
+        //    }
+        //    options.ResourceGroupName = vms[vmind - 1].ResourceGroupName;
+        //    options.VirtualMachineIPAddress = vms[vmind - 1].GetPrimaryNetworkInterface().PrimaryPrivateIP;
+        //    return true;
+        //}
 
         /// <summary>
         /// Unpacks all the support files associated with this program.   

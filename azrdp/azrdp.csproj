@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,27 +28,34 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine">
-      <HintPath>binaries\CommandLine.dll</HintPath>
+    <Reference Include="CommandLine, Version=2.0.275.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.1.1-beta\lib\net45\CommandLine.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
-      <HintPath>binaries\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=2.28.4.987, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.4\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms">
-      <HintPath>binaries\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms, Version=2.28.4.987, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.4\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>binaries\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,7 +67,6 @@
   <ItemGroup>
     <Compile Include="ARMClient.Authentication\AADAuthentication\AuthHelper.cs" />
     <Compile Include="ARMClient.Authentication\AADAuthentication\BaseAuthHelper.cs" />
-    <Compile Include="ARMClient.Authentication\AADAuthentication\PersistentAuthHelper.cs" />
     <Compile Include="ARMClient.Authentication\Constants.cs" />
     <Compile Include="ARMClient.Authentication\Contracts\AzureEnvironments.cs" />
     <Compile Include="ARMClient.Authentication\Contracts\CustomTokenCache.cs" />
@@ -72,7 +78,6 @@
     <Compile Include="ARMClient.Authentication\Contracts\TenantInfo.cs" />
     <Compile Include="ARMClient.Authentication\Contracts\TokenCacheInfo.cs" />
     <Compile Include="ARMClient.Authentication\Contracts\VerifiedDomain.cs" />
-    <Compile Include="ARMClient.Authentication\EnvironmentStorage\FileEnvironmentStorage.cs" />
     <Compile Include="ARMClient.Authentication\EnvironmentStorage\IEnvironmentStorage.cs" />
     <Compile Include="ARMClient.Authentication\EnvironmentStorage\MemoryEnvironmentStorage.cs" />
     <Compile Include="ARMClient.Authentication\IAuthHelper.cs" />
@@ -81,7 +86,7 @@
     <Compile Include="ARMClient.Authentication\TokenStorage\ITokenStorage.cs" />
     <Compile Include="ARMClient.Authentication\TokenStorage\MemoryTokenStorage.cs" />
     <Compile Include="ARMClient.Authentication\Utilities\Utils.cs" />
-    <Compile Include="AzureJumpBox.cs" />
+    <Compile Include="AzureResourceManager.cs" />
     <Compile Include="IPNetwork\BigIntegerExt.cs" />
     <Compile Include="IPNetwork\IPAddressCollection.cs" />
     <Compile Include="IPNetwork\IPNetwork.cs" />
@@ -103,6 +108,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="LICENSE" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="binaries\ssh-keygen.exe">
@@ -115,25 +121,30 @@
       <WithCulture>false</WithCulture>
       <LogicalName>.\ssh.exe</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="binaries\CommandLine.dll">
+    <EmbeddedResource Include="bin\CommandLine.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\CommandLine.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.IdentityModel.Clients.ActiveDirectory.dll">
+    <EmbeddedResource Include="bin\Microsoft.IdentityModel.Clients.ActiveDirectory.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll">
+    <EmbeddedResource Include="bin\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="binaries\Newtonsoft.Json.dll">
+    <EmbeddedResource Include="bin\Newtonsoft.Json.dll">
       <Type>Non-Resx</Type>
       <WithCulture>false</WithCulture>
       <LogicalName>.\Newtonsoft.Json.dll</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\System.Net.Http.Formatting.dll">
+      <Type>Non-Resx</Type>
+      <WithCulture>false</WithCulture>
+      <LogicalName>.\System.Net.Http.Formatting.dll</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
