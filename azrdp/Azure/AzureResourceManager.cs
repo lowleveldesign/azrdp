@@ -12,7 +12,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LowLevelDesign.AzureRemoteDesktop
+namespace LowLevelDesign.AzureRemoteDesktop.Azure
 {
     sealed class AzureException : Exception
     {

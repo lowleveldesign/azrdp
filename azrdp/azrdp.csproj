@@ -86,7 +86,8 @@
     <Compile Include="ARMClient.Authentication\TokenStorage\ITokenStorage.cs" />
     <Compile Include="ARMClient.Authentication\TokenStorage\MemoryTokenStorage.cs" />
     <Compile Include="ARMClient.Authentication\Utilities\Utils.cs" />
-    <Compile Include="AzureResourceManager.cs" />
+    <Compile Include="Azure\AzureResourceManager.cs" />
+    <Compile Include="Azure\AzureVMLocalizer.cs" />
     <Compile Include="IPNetwork\BigIntegerExt.cs" />
     <Compile Include="IPNetwork\IPAddressCollection.cs" />
     <Compile Include="IPNetwork\IPNetwork.cs" />

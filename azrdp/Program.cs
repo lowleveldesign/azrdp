@@ -1,9 +1,7 @@
-﻿using ARMClient.Authentication.AADAuthentication;
-using ARMClient.Authentication.Utilities;
-using CommandLine;
+﻿using CommandLine;
+using LowLevelDesign.AzureRemoteDesktop.Azure;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using Utilities;
@@ -12,6 +10,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
 {
     class Program
     {
+        static readonly CancellationToken appCancellationToken = new CancellationToken();
 
         [STAThread()]
         public static void Main(string[] args)
@@ -33,29 +32,28 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 Logger.Level = SourceLevels.Verbose;
             }
 
-            var resourceManager = new AzureResourceManager();
-            resourceManager.AuthenticateWithPrompt().Wait();
-
-            var cancellationToken = new CancellationToken();
-
-            var subscriptions = resourceManager.GetAsync("/subscriptions", cancellationToken).Result;
-            Console.WriteLine(subscriptions.ToString());
-
-            //if (options.VirtualMachineIPAddress == null || options.ResourceGroupName == null) {
-            //    // we only list available virtual machines
-            //    if (!LetUserChooseTheVirtualMachine(azure, options)) {
-            //        return;
-            //    }
-            //}
-
-            IPAddress virtualMachineIPAddress;
-            if (!IPAddress.TryParse(options.VirtualMachineIPAddress, out virtualMachineIPAddress)) {
-                Console.Error.WriteLine("ERROR: invalid format of the IP address");
-                return;
-            }
-
-            // FIXME var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
             try {
+                var resourceManager = new AzureResourceManager();
+                resourceManager.AuthenticateWithPrompt().Wait();
+
+                var vmLocalizer = new AzureVMLocalizer(resourceManager);
+                vmLocalizer.LocalizeVMAsync(options, appCancellationToken).Wait();
+
+                //var targetVm
+                //if (options.VirtualMachineIPAddress == null || options.ResourceGroupName == null) {
+                //    // we only list available virtual machines
+                //    if (!LetUserChooseTheVirtualMachine(azure, options)) {
+                //        return;
+                //    }
+                //}
+
+                IPAddress virtualMachineIPAddress;
+                if (!IPAddress.TryParse(options.VirtualMachineIPAddress, out virtualMachineIPAddress)) {
+                    Console.Error.WriteLine("ERROR: invalid format of the IP address");
+                    return;
+                }
+
+                // FIXME var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
                 var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir);
                 if (!openSSHWrapper.IsKeyFileLoaded) {
                     openSSHWrapper.GenerateKeyFileInUserProfile();
@@ -68,12 +66,14 @@ namespace LowLevelDesign.AzureRemoteDesktop
 
                 // FIXME: start mstsc with a connection to localhost and a port number
             } catch (Exception ex) {
-                Console.WriteLine("ERROR: error occurred while deploying the machine. Full details:");
+                // FIXME catch AzureException 
+                Console.WriteLine("ERROR: error occurred. Full details:");
                 Console.WriteLine(ex);
             } finally {
                 //FIXME: azureJumpBox.Dispose(); - should I use the destructor
             }
         }
+
 
         //static bool LetUserChooseTheVirtualMachine(IAzure azure, Options options)
         //{
