@@ -109,6 +109,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="LICENSE" />
+    <None Include="LICENSE-ARMClient" />
+    <None Include="LICENSE-ipnetwork" />
+    <None Include="LICENSE-PerfView" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

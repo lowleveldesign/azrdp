@@ -39,20 +39,6 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 var vmLocalizer = new AzureVMLocalizer(resourceManager);
                 vmLocalizer.LocalizeVMAsync(options, appCancellationToken).Wait();
 
-                //var targetVm
-                //if (options.VirtualMachineIPAddress == null || options.ResourceGroupName == null) {
-                //    // we only list available virtual machines
-                //    if (!LetUserChooseTheVirtualMachine(azure, options)) {
-                //        return;
-                //    }
-                //}
-
-                IPAddress virtualMachineIPAddress;
-                if (!IPAddress.TryParse(options.VirtualMachineIPAddress, out virtualMachineIPAddress)) {
-                    Console.Error.WriteLine("ERROR: invalid format of the IP address");
-                    return;
-                }
-
                 // FIXME var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
                 var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir);
                 if (!openSSHWrapper.IsKeyFileLoaded) {
@@ -73,29 +59,6 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 //FIXME: azureJumpBox.Dispose(); - should I use the destructor
             }
         }
-
-
-        //static bool LetUserChooseTheVirtualMachine(IAzure azure, Options options)
-        //{
-        //    Console.WriteLine("Please choose the VM you would like to connect to:");
-        //    Console.WriteLine("-------------------------------------------------");
-        //    var vms = azure.VirtualMachines.List().ToArray();
-        //    for (int i = 0; i < vms.Length; i++) {
-        //        var vm = vms[i];
-        //        Console.WriteLine($" [{i + 1}] '{vm.Name}' ({vm.PowerState}), resource group: '{vm.ResourceGroupName}', " +
-        //            "ip: {vm.GetPrimaryNetworkInterface().PrimaryPrivateIP}");
-        //    }
-        //    Console.Write("VM (choose number): ");
-        //    string response = Console.ReadLine();
-        //    int vmind;
-        //    if (!int.TryParse(response, out vmind) || (vmind - 1) >= vms.Length || vmind < 1) {
-        //        Console.Error.WriteLine("ERROR: number out of range");
-        //        return false;
-        //    }
-        //    options.ResourceGroupName = vms[vmind - 1].ResourceGroupName;
-        //    options.VirtualMachineIPAddress = vms[vmind - 1].GetPrimaryNetworkInterface().PrimaryPrivateIP;
-        //    return true;
-        //}
 
         /// <summary>
         /// Unpacks all the support files associated with this program.   

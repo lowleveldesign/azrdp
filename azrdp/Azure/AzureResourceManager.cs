@@ -22,7 +22,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
 
     sealed class AzureResourceManager
     {
-        private const string ApiVersion = "2017-05-10";
+        private const string ApiVersion = "2017-03-01";
         private readonly AuthHelper auth = new AuthHelper();
 
         public AzureResourceManager() { }
