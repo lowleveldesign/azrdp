@@ -2,6 +2,7 @@
 using NDesk.Options;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using Utilities;
@@ -28,9 +29,9 @@ namespace LowLevelDesign.AzureRemoteDesktop
 
             var p = new OptionSet
             {
-                { "s|subscription", "Subscription name or id, where the VM is located.", v => { subscription = v; } },
-                { "r|resgroup", "Resource Group name or id, where the VM is located.", v => { resourceGroupName = v; } },
-                { "i|Virtual Machine IP address", "Resource Group name or id, where the VM is located.", v => { vmIPAddress = v; } },
+                { "s|subscription=", "Subscription name or id, where the VM is located.", v => { subscription = v; } },
+                { "r|resgroup=", "Resource Group name or id, where the VM is located.", v => { resourceGroupName = v; } },
+                { "i|vmip=", "Virtual Machine IP address.", v => { vmIPAddress = v; } },
                 { "v|verbose", "Verbose output.", v => verbose = v != null },
                 { "h|help", "Show this message and exit", v => showHelp = v != null },
                 { "?", "Show this message and exit", v => showHelp = v != null }
@@ -72,8 +73,9 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 var targetVM = new AzureVMLocalizer(resourceManager);
                 targetVM.LocalizeVMAsync(subscription, resourceGroupName, vmIPAddress, appCancellationToken).Wait();
 
-                Logger.Log.TraceEvent(TraceEventType.Verbose, 0, "The target VM IP: {0}, VnetId: {1}, SubnetId: {2}, RG: {3}",
-                    targetVM.TargetIPAddress, targetVM.VirtualNetworkId, targetVM.SubnetId, targetVM.ResourceGroupName);
+                Logger.Log.TraceEvent(TraceEventType.Verbose, 0, "The target VM IP: {0}, Vnet: {1}, Subnet: {2}, RG: {3}",
+                    targetVM.TargetIPAddress, Path.GetFileName(targetVM.VirtualNetworkId), Path.GetFileName(targetVM.SubnetId), 
+                    targetVM.ResourceGroupName);
 
                 // FIXME var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
                 var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir);

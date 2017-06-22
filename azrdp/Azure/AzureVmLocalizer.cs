@@ -68,7 +68,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             }
 
             Debug.Assert(subscriptionId != null);
-            Debug.Assert(resourceGroupName != null);
+            Debug.Assert(this.resourceGroupName != null);
             Debug.Assert(subnetId != null);
             Debug.Assert(virtualNetworkId != null);
             Debug.Assert(targetIPAddress != null);
@@ -267,7 +267,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             }
 
             var virtualNetworks = (await resourceManager.GetAsync($"/subscriptions/{subscriptionId}/" +
-                "resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualnetworks",
+                $"resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualnetworks",
                 cancellationToken))["value"].ToArray();
 
             foreach (var virtualNetwork in virtualNetworks) {
