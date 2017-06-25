@@ -11,7 +11,9 @@ namespace LowLevelDesign.AzureRemoteDesktop
 {
     class Program
     {
-        static readonly CancellationToken appCancellationToken = new CancellationToken();
+        const string RootUsername = "azrdp";
+        static readonly CancellationTokenSource appCancellationTokenSource = new CancellationTokenSource();
+        static readonly CancellationToken appCancellationToken = appCancellationTokenSource.Token;
 
         [STAThread()]
         public static void Main(string[] args)
@@ -25,14 +27,17 @@ namespace LowLevelDesign.AzureRemoteDesktop
         static void DoMain(string[] args)
         {
             bool showHelp = false, verbose = false;
-            string subscription = null, resourceGroupName = null, vmIPAddress = null;
+            string subscriptionId = null, resourceGroupName = null, vmIPAddress = null;
+            ushort localPort = 50000, remotePort = 3389;
 
             var p = new OptionSet
             {
-                { "s|subscription=", "Subscription name or id, where the VM is located.", v => { subscription = v; } },
+                { "s|subscriptionId=", "Subscription id, in which the VM is located.", v => { subscriptionId = v; } },
                 { "r|resgroup=", "Resource Group name or id, where the VM is located.", v => { resourceGroupName = v; } },
                 { "i|vmip=", "Virtual Machine IP address.", v => { vmIPAddress = v; } },
-                { "v|verbose", "Verbose output.", v => verbose = v != null },
+                { "l|localport=", "Port number of the local machine used by the SSH tunnel (default 50000).", v => { localPort = ushort.Parse(v); } },
+                { "p|remoteport=", "Port number of the remote machine (default 3389 - RDP).", v => { remotePort = ushort.Parse(v); } },
+                { "v|verbose", "Outputs all requests to Azure.", v => verbose = v != null },
                 { "h|help", "Show this message and exit", v => showHelp = v != null },
                 { "?", "Show this message and exit", v => showHelp = v != null }
             };
@@ -48,10 +53,21 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 Console.Error.WriteLine("ERROR: invalid number in one of the constraints");
                 Console.Error.WriteLine();
                 showHelp = true;
+            } catch (OverflowException) {
+                Console.Error.WriteLine("ERROR: invalid port number");
+                Console.Error.WriteLine();
+                showHelp = true;
             }
 
-            if (!(resourceGroupName == null && subscription == null && vmIPAddress == null ||
-                resourceGroupName != null && subscription != null && vmIPAddress != null)) {
+            Guid g;
+            if (!Guid.TryParseExact(subscriptionId, "d", out g)) {
+                Console.Error.WriteLine("ERROR: subscription id was not provided or is invalid");
+                Console.Error.WriteLine();
+                showHelp = true;
+            }
+
+            if (!(resourceGroupName == null && vmIPAddress == null ||
+                resourceGroupName != null && vmIPAddress != null)) {
                 Console.Error.WriteLine("ERROR: invalid parameters. Please either provide subscription, resource group, and IP address, or nothing at all.");
                 Console.Error.WriteLine();
                 showHelp = true;
@@ -62,39 +78,39 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 return;
             }
 
-            if (verbose) {
-                Logger.Level = SourceLevels.Verbose;
-            }
+            SetConsoleCtrlCHook();
 
             try {
-                var resourceManager = new AzureResourceManager();
+                var resourceManager = new AzureResourceManager(subscriptionId, verbose);
                 resourceManager.AuthenticateWithPrompt().Wait();
 
                 var targetVM = new AzureVMLocalizer(resourceManager);
-                targetVM.LocalizeVMAsync(subscription, resourceGroupName, vmIPAddress, appCancellationToken).Wait();
+                targetVM.LocalizeVMAsync(resourceGroupName, vmIPAddress, appCancellationToken).Wait();
 
-                Logger.Log.TraceEvent(TraceEventType.Verbose, 0, "The target VM IP: {0}, Vnet: {1}, Subnet: {2}, RG: {3}",
-                    targetVM.TargetIPAddress, Path.GetFileName(targetVM.VirtualNetworkId), Path.GetFileName(targetVM.SubnetId), 
-                    targetVM.ResourceGroupName);
+                Trace.TraceInformation($"The target VM IP: {targetVM.TargetIPAddress}, Vnet: {Path.GetFileName(targetVM.VirtualNetworkId)}, " +
+                    $"Subnet: {Path.GetFileName(targetVM.SubnetId)}, RG: {targetVM.ResourceGroupName}");
 
-                // FIXME var azureJumpBox = new AzureJumpBox(azure, options.ResourceGroupName, virtualMachineIPAddress);
-                var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir);
-                if (!openSSHWrapper.IsKeyFileLoaded) {
-                    openSSHWrapper.GenerateKeyFileInUserProfile();
+                using (var azureJumpHost = new AzureJumpHost(resourceManager, targetVM)) {
+                    var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir);
+                    if (!openSSHWrapper.IsKeyFileLoaded) {
+                        openSSHWrapper.GenerateKeyFileInUserProfile();
+                    }
+
+                    Console.WriteLine("Provisioning VM with Public IP in Azure ...");
+                    azureJumpHost.DeployAndStartAsync(RootUsername, openSSHWrapper.GetPublicKey(), appCancellationToken).Wait();
+
+                    openSSHWrapper.StartOpenSSHSession(localPort, targetVM.TargetIPAddress, remotePort);
+
+                    Console.WriteLine("Press Ctrl+C to gracefully close the session.");
+                    // FIXME: start mstsc with a connection to localhost and a port number
+                    while (!appCancellationToken.IsCancellationRequested) {
+                        Thread.Sleep(TimeSpan.FromSeconds(10));
+                    }
                 }
-                Console.WriteLine("Provisioning VM with Public IP in Azure ...");
-                // FIXME provision
-
-                // FIXME: start openssh in a hidden window - I should add a port parameter
-                openSSHWrapper.StartOpenSSHSession();
-
-                // FIXME: start mstsc with a connection to localhost and a port number
             } catch (Exception ex) {
                 // FIXME catch AzureException 
                 Console.WriteLine("ERROR: error occurred. Full details:");
                 Console.WriteLine(ex);
-            } finally {
-                //FIXME: azureJumpBox.Dispose(); - should I use the destructor
             }
         }
 
@@ -106,9 +122,19 @@ namespace LowLevelDesign.AzureRemoteDesktop
             return SupportFiles.UnpackResourcesIfNeeded();
         }
 
+        static void SetConsoleCtrlCHook()
+        {
+            // Set up Ctrl-C to stop both user mode and kernel mode sessions
+            Console.CancelKeyPress += (object sender, ConsoleCancelEventArgs cancelArgs) => {
+                Console.WriteLine("Please wait. It may take up to few minutes to remove all the resources.");
+                cancelArgs.Cancel = true;
+                appCancellationTokenSource.Cancel();
+            };
+        }
+
         static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("azrdp v{0} - create a temporary jump host to a VM",
+            Console.WriteLine("azrdp v{0} - create a temporary jump host to a VM in Azure",
                 Assembly.GetExecutingAssembly().GetName().Version.ToString());
             Console.WriteLine("Copyright (C) 2017 Sebastian Solnica (@lowleveldesign)");
             Console.WriteLine();

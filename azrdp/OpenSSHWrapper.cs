@@ -46,7 +46,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
 
         public void GenerateKeyFileInUserProfile()
         {
-            Logger.Log.TraceEvent(TraceEventType.Verbose, 0, "Generating new RSA keys for SSH connection.");
+            Console.WriteLine("Generating new RSA keys for SSH connection.");
             var path = Path.Combine(sshKeysFolderPath, "azrdp_rsa");
             var args = $"-t rsa -b 2048 -q -f \"{path}\" -N \"azrdp\"";
             var psi = new ProcessStartInfo(sshKeyGenPath, args) {
@@ -63,7 +63,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
             Debug.Assert(File.Exists(publicKeyPath));
         }
 
-        public void StartOpenSSHSession()
+        public void StartOpenSSHSession(ushort localPort, string targetVMIPAddress, ushort remotePort)
         {
             // FIXME
         }
