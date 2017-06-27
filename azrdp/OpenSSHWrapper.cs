@@ -65,7 +65,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
 
         public void StartOpenSSHSession(ushort localPort, string targetVMIPAddress, ushort remotePort)
         {
-            // FIXME
+            // FIXME: open SSH session
         }
     }
 }

@@ -20,6 +20,10 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             : base($"{message} (http: {httpCode})") { }
     }
 
+    sealed class AzureTooManyRequestsException : Exception
+    {
+    }
+
     sealed class AzureResourceManager
     {
         private const string ApiVersion = "2017-03-01";
@@ -44,6 +48,19 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             await auth.AcquireTokens();
         }
 
+        public async Task<bool> HeadAsync(string azureRelativeUri, CancellationToken cancellationToken)
+        {
+            using (var client = await CreateAzureRestClient()) {
+                using (var response = await client.GetAsync(PrepareAzureRestUrl(azureRelativeUri), cancellationToken)) {
+                    if (response.StatusCode == HttpStatusCode.NoContent) {
+                        return true;
+                    }
+                    Debug.Assert(response.StatusCode == HttpStatusCode.NotFound);
+                    return false;
+                }
+            }
+        }
+
         public async Task<JToken> GetAsync(string azureRelativeUri, CancellationToken cancellationToken)
         {
             using (var client = await CreateAzureRestClient()) {
@@ -55,11 +72,19 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
 
         public async Task<JToken> PutAsync(string azureRelativeUri, string content, CancellationToken cancellationToken)
         {
-            using (var httpContent = new StringContent(content, Encoding.UTF8, JsonContentType))
-            using (var client = await CreateAzureRestClient()) {
-                using (var response = await client.PutAsync(PrepareAzureRestUrl(azureRelativeUri),
-                    httpContent, cancellationToken)) {
-                    return await ParseResponse(response);
+            while (true) {
+                var httpContent = new StringContent(content, Encoding.UTF8, JsonContentType);
+                try {
+                    using (var client = await CreateAzureRestClient()) {
+                        using (var response = await client.PutAsync(PrepareAzureRestUrl(azureRelativeUri),
+                            httpContent, cancellationToken)) {
+                            return await ParseResponse(response);
+                        }
+                    }
+                } catch (AzureTooManyRequestsException) {
+                    Trace.TraceWarning("WARNING: retrying the request: {0}", azureRelativeUri);
+                } finally {
+                    httpContent.Dispose();
                 }
             }
         }
@@ -121,6 +146,9 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 using (var reader = new StreamReader(await response.Content.ReadAsStreamAsync())) {
                     return JToken.ReadFrom(new JsonTextReader(reader));
                 }
+            }
+            if ((int)response.StatusCode == 429) {
+                throw new AzureTooManyRequestsException();
             }
             var msg = await response.Content.ReadAsStringAsync();
             throw new AzureException(response.StatusCode, msg);

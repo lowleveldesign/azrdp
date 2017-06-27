@@ -249,7 +249,6 @@ namespace ARMClient.Authentication.Utilities
                 return ret;
             }
 
-            // FIXME: var env = persistentAuthHelper.IsCacheValid() ? persistentAuthHelper.AzureEnvironments : AzureEnvironments.Prod;
             var env = AzureEnvironments.Prod;
             var parts = path.Split(new[] { '/', '?' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length <= 0
