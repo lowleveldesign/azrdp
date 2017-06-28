@@ -152,6 +152,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>powershell -Command "Copy-Item $(SolutionDir)\packages\Microsoft.AspNet.WebApi.Client*\lib\net45\*.dll $(TargetDir);Copy-Item $(SolutionDir)\packages\Microsoft.IdentityModel.Clients.ActiveDirectory*\lib\net45\*.dll $(TargetDir);Copy-Item $(SolutionDir)\packages\NDesk.Options*\lib\*.dll $(TargetDir);copy-Item $(SolutionDir)\packages\Newtonsoft.Json*\lib\net45\*.dll $(TargetDir);"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -52,7 +52,8 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
         {
             using (var client = await CreateAzureRestClient()) {
                 using (var response = await client.GetAsync(PrepareAzureRestUrl(azureRelativeUri), cancellationToken)) {
-                    if (response.StatusCode == HttpStatusCode.NoContent) {
+                    if (response.StatusCode == HttpStatusCode.NoContent ||
+                        response.StatusCode == HttpStatusCode.OK) {
                         return true;
                     }
                     Debug.Assert(response.StatusCode == HttpStatusCode.NotFound);

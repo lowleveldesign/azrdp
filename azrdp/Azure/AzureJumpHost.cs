@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +19,13 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
         private readonly AzureResourceManager resourceManager;
         private readonly AzureVMLocalizer targetVM;
         private readonly string uniqueResourceIdentifier;
-        private readonly LinkedList<AzureResource> createdResources = new LinkedList<AzureResource>();
+        private readonly Stack<AzureResource> createdResources = new Stack<AzureResource>(10);
+
+        private string networkSecurityGroupId;
+        private string publicIPId;
+        private string networkInterfaceCardId;
+        private string virtualMachineId;
+        private string virtualMachineOsDiskId;
 
         public AzureJumpHost(AzureResourceManager resourceManager, AzureVMLocalizer targetVM)
         {
@@ -27,18 +34,19 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             this.uniqueResourceIdentifier = Guid.NewGuid().ToString("n");
         }
 
-        public async Task DeployAndStartAsync(string rootUsername, string sshPublicKey, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task DeployAndStartAsync(string rootUsername, string sshPublicKey,
+            string vmSize = "Standard_F1S", CancellationToken cancellationToken = default(CancellationToken))
         {
-            var publicIP = await CreatePublicIP(cancellationToken);
+            await CreatePublicIPAsync(cancellationToken);
 
-            var nsg = await CreateNetworkSecurityGroup(cancellationToken);
+            await CreateNetworkSecurityGroupAsync(cancellationToken);
 
-            var nic = await CreateNetworkInterface(publicIP, nsg, cancellationToken);
+            await CreateNetworkInterfaceAsync(cancellationToken);
 
-            await CreateVirtualMachine(rootUsername, sshPublicKey, nic, cancellationToken);
+            await CreateVirtualMachineAsync(rootUsername, sshPublicKey, vmSize, cancellationToken);
         }
 
-        private async Task<string> CreatePublicIP(CancellationToken cancellationToken)
+        private async Task CreatePublicIPAsync(CancellationToken cancellationToken)
         {
             Console.Write("Creating public IP address...");
 
@@ -51,18 +59,16 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             ip.Add("properties", properties);
 
             var id = $"IP{uniqueResourceIdentifier}-pip";
-            var resourceId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
+            publicIPId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Network/publicIPAddresses/{id}";
 
-            await resourceManager.PutAsync(resourceId, ip.ToString(), cancellationToken);
+            await resourceManager.PutAsync(publicIPId, ip.ToString(), cancellationToken);
 
-            createdResources.AddFirst(new AzureResource { ResourceId = resourceId });
+            createdResources.Push(new AzureResource { ResourceId = publicIPId });
             Console.WriteLine("done ({0})", id);
-
-            return resourceId;
         }
 
-        private async Task<string> CreateNetworkSecurityGroup(CancellationToken cancellationToken)
+        private async Task CreateNetworkSecurityGroupAsync(CancellationToken cancellationToken)
         {
             Console.Write("Creating Network Security Group...");
 
@@ -88,19 +94,20 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             });
 
             var id = $"{uniqueResourceIdentifier}-nsg";
-            var resourceId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
+            networkSecurityGroupId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Network/networkSecurityGroups/{id}";
 
-            await resourceManager.PutAsync(resourceId, nsg.ToString(), cancellationToken);
+            await resourceManager.PutAsync(networkSecurityGroupId, nsg.ToString(), cancellationToken);
 
-            createdResources.AddFirst(new AzureResource { ResourceId = resourceId });
+            createdResources.Push(new AzureResource { ResourceId = networkSecurityGroupId });
             Console.WriteLine("done ({0})", id);
-
-            return resourceId;
         }
 
-        public async Task<string> CreateNetworkInterface(string publicIP, string nsg, CancellationToken cancellationToken)
+        public async Task CreateNetworkInterfaceAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(publicIPId != null);
+            Debug.Assert(networkSecurityGroupId != null);
+
             Console.Write("Creating Network Interface Card...");
 
             var ipConfigurations = new JArray();
@@ -109,33 +116,34 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 { "properties", new JObject() {
                     { "subnet", new JObject() { {  "id", targetVM.SubnetId } } },
                     { "privateIPAllocationMethod", "Dynamic" },
-                    { "publicIPAddress", new JObject() { { "id", publicIP } } }
+                    { "publicIPAddress", new JObject() { { "id", publicIPId } } }
                 } }
             });
 
             var nic = new JObject() {
                 { "location", targetVM.ResourceGroupLocation },
                 { "properties", new JObject() {
-                        { "networkSecurityGroup", new JObject() { { "id", nsg } } },
+                        { "networkSecurityGroup", new JObject() { { "id", networkSecurityGroupId } } },
                         { "ipConfigurations", ipConfigurations }
                     }
                 }
             };
 
             var id = $"{uniqueResourceIdentifier}-nic";
-            var resourceId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
+            networkInterfaceCardId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Network/networkInterfaces/{id}";
 
-            await resourceManager.PutAsync(resourceId, nic.ToString(), cancellationToken);
+            await resourceManager.PutAsync(networkInterfaceCardId, nic.ToString(), cancellationToken);
 
-            createdResources.AddFirst(new AzureResource { ResourceId = resourceId });
+            createdResources.Push(new AzureResource { ResourceId = networkInterfaceCardId });
             Console.WriteLine("done ({0})", id);
-
-            return resourceId;
         }
 
-        private async Task CreateVirtualMachine(string rootUsername, string sshPublicKey, string nic, CancellationToken cancellationToken)
+        private async Task CreateVirtualMachineAsync(string rootUsername, string sshPublicKey,
+            string vmSize, CancellationToken cancellationToken)
         {
+            Debug.Assert(networkInterfaceCardId != null);
+
             Console.Write("Creating Virtual Machine...");
 
             var id = $"{uniqueResourceIdentifier}-vm";
@@ -149,7 +157,8 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 } },
                 { "osDisk", new JObject() {
                     { "createOption", "fromImage" },
-                    { "managedDisk", new JObject() { { "storageAccountType", "Premium_LRS" } } }
+                    { "managedDisk", new JObject() { { "storageAccountType",
+                            vmSize.EndsWith("S", StringComparison.OrdinalIgnoreCase) ? "Premium_LRS" : "Standard_LRS" } } }
                 } }
             };
 
@@ -172,7 +181,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             var networkProfile = new JObject() {
                 { "networkInterfaces", new JArray() {
                     new JObject() {
-                        { "id", nic },
+                        { "id", networkInterfaceCardId },
                         { "properties", new JObject() { { "primary", true } } }
                     }
                 } }
@@ -186,7 +195,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 { "name", id },
                 { "location", targetVM.ResourceGroupLocation },
                 { "properties", new JObject() {
-                    { "hardwareProfile", new JObject() { { "vmSize", "Standard_F1S" } } },
+                    { "hardwareProfile", new JObject() { { "vmSize", vmSize } } },
                     { "storageProfile", storageProfile },
                     { "osProfile", osProfile },
                     { "networkProfile", networkProfile },
@@ -194,36 +203,44 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 } }
             };
 
-            var resourceId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
+            virtualMachineId  = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Compute/virtualMachines/{id}?api-version=2017-03-30";
-            // FIXME managed disk to save
-            //var osDiskResourceId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
-            //    $"/providers/Microsoft.Compute/disks/{osDiskId}?api-version=2017-03-30";
 
-            await resourceManager.PutAsync(resourceId, vm.ToString(), cancellationToken);
+            await resourceManager.PutAsync($"{virtualMachineId}", vm.ToString(), cancellationToken);
 
-            createdResources.AddFirst(new AzureResource { ResourceId = resourceId, ShouldWaitForRemoval = true });
-            //createdResources.AddFirst(new AzureResource { ResourceId = osDiskResourceId });
-
-            bool provisioningFinished = false;
-            while (!provisioningFinished) {
+            do {
                 Console.Write(".");
                 await Task.Delay(TimeSpan.FromSeconds(5));
 
-                vm = await resourceManager.GetAsync(resourceId, cancellationToken);
-                foreach (var status in vm.Values("statuses")) {
-                    if (status.Value<string>("code").Equals("PowerState/running", StringComparison.Ordinal)) {
-                        provisioningFinished = true;
-                        break;
-                    }
+                vm = await resourceManager.GetAsync(virtualMachineId, cancellationToken);
+
+                UpdateVirtualMachineAssets(vm);
+            } while (!IsVmRunning(vm));
+            Console.WriteLine("done ({0})", id);
+        }
+
+        private void UpdateVirtualMachineAssets(JToken vm)
+        {
+            if (virtualMachineOsDiskId == null) {
+                var id = vm["properties"]["storageProfile"]["osDisk"]["managedDisk"].Value<string>("id");
+                if (id != null) {
+                    virtualMachineOsDiskId = $"{id}?api-version=2017-03-30";
+                    createdResources.Push(new AzureResource { ResourceId = virtualMachineOsDiskId });
+                    createdResources.Push(new AzureResource { ResourceId = virtualMachineId, ShouldWaitForRemoval = true });
                 }
             }
-            Console.WriteLine("done ({0})", id);
+        }
+
+        private bool IsVmRunning(JToken vm)
+        {
+            return string.Equals(vm["properties"].Value<string>("provisioningState"), "succeeded", StringComparison.OrdinalIgnoreCase);
         }
 
         public void Dispose()
         {
-            foreach (var resource in createdResources) {
+            Console.WriteLine();
+            while (createdResources.Count != 0) {
+                var resource = createdResources.Pop();
                 Console.Write("Removing {0}...", resource.ResourceId);
                 resourceManager.DeleteAsync(resource.ResourceId, CancellationToken.None).Wait();
                 if (resource.ShouldWaitForRemoval) {

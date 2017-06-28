@@ -27,7 +27,8 @@ namespace LowLevelDesign.AzureRemoteDesktop
         static void DoMain(string[] args)
         {
             bool showHelp = false, verbose = false;
-            string subscriptionId = null, resourceGroupName = null, vmIPAddress = null;
+            string subscriptionId = null, resourceGroupName = null, 
+                vmIPAddress = null, vmSize = "Standard_F1S";
             ushort localPort = 50000, remotePort = 3389;
 
             var p = new OptionSet
@@ -37,6 +38,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 { "i|vmip=", "Virtual Machine IP address.", v => { vmIPAddress = v; } },
                 { "l|localport=", "Port number of the local machine used by the SSH tunnel (default 50000).", v => { localPort = ushort.Parse(v); } },
                 { "p|remoteport=", "Port number of the remote machine (default 3389 - RDP).", v => { remotePort = ushort.Parse(v); } },
+                { "vmsize=", "The size of the Virtual Machine to be created (default Standard_F1S)", v => { vmSize = v; } },
                 { "v|verbose", "Outputs all requests to Azure.", v => verbose = v != null },
                 { "h|help", "Show this message and exit", v => showHelp = v != null },
                 { "?", "Show this message and exit", v => showHelp = v != null }
@@ -97,7 +99,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
                     }
 
                     Console.WriteLine("Provisioning VM with Public IP in Azure ...");
-                    azureJumpHost.DeployAndStartAsync(RootUsername, openSSHWrapper.GetPublicKey(), appCancellationToken).Wait();
+                    azureJumpHost.DeployAndStartAsync(RootUsername, openSSHWrapper.GetPublicKey(), vmSize, appCancellationToken).Wait();
 
                     openSSHWrapper.StartOpenSSHSession(localPort, targetVM.TargetIPAddress, remotePort);
 

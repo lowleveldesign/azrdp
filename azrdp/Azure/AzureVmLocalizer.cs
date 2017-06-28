@@ -131,9 +131,9 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 cancellationToken))["value"].ToArray();
 
             foreach (var networkInterface in networkInterfaces) {
-                if (networkInterface["properties"]["virtualMachine"].HasValues) {
+                if (networkInterface["properties"]["virtualMachine"] != null) {
                     var virtualMachineId = networkInterface["properties"]["virtualMachine"].Value<string>("id");
-                    if (networkInterface["properties"]["ipConfigurations"].HasValues) {
+                    if (networkInterface["properties"]["ipConfigurations"] != null) {
                         var ipConfigurations = networkInterface["properties"]["ipConfigurations"].ToArray();
                         foreach (var ipConfiguration in ipConfigurations) {
                             if (string.Equals(ipConfiguration["properties"].Value<string>("provisioningState"),
@@ -159,9 +159,9 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                     cancellationToken);
                 networkInterfaces = (r)["value"].ToArray();
                 foreach (var networkInterface in networkInterfaces) {
-                    if (networkInterface["properties"]["virtualMachine"].HasValues) {
+                    if (networkInterface["properties"]["virtualMachine"] != null) {
                         var virtualMachineId = networkInterface["properties"]["virtualMachine"].Value<string>("id");
-                        if (networkInterface["properties"]["ipConfigurations"].HasValues) {
+                        if (networkInterface["properties"]["ipConfigurations"] != null) {
                             var ipConfigurations = networkInterface["properties"]["ipConfigurations"].ToArray();
                             foreach (var ipConfiguration in ipConfigurations) {
                                 if (string.Equals(ipConfiguration["properties"].Value<string>("provisioningState"),
