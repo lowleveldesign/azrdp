@@ -68,13 +68,6 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 showHelp = true;
             }
 
-            if (!(resourceGroupName == null && vmIPAddress == null ||
-                resourceGroupName != null && vmIPAddress != null)) {
-                Console.Error.WriteLine("ERROR: invalid parameters. Please either provide subscription, resource group, and IP address, or nothing at all.");
-                Console.Error.WriteLine();
-                showHelp = true;
-            }
-
             if (showHelp) {
                 ShowHelp(p);
                 return;
