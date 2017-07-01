@@ -113,11 +113,6 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             client.DefaultRequestHeaders.Add("User-Agent", Constants.UserAgent.Value);
             client.DefaultRequestHeaders.Add("Accept", Constants.JsonContentType);
 
-            // FIXME: should I include this?
-            //if (Utils.IsRdfe(uri)) {
-            //    client.DefaultRequestHeaders.Add("x-ms-version", "2013-10-01");
-            //}
-
             client.DefaultRequestHeaders.Add("x-ms-request-id", Guid.NewGuid().ToString());
 
             return client;

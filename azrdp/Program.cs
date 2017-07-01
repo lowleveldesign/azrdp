@@ -27,7 +27,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
         static void DoMain(string[] args)
         {
             bool showHelp = false, verbose = false;
-            string subscriptionId = null, resourceGroupName = null, 
+            string subscriptionId = null, resourceGroupName = null,
                 vmIPAddress = null, vmSize = "Standard_F1S";
             ushort localPort = 50000, remotePort = 3389;
 
@@ -129,10 +129,25 @@ namespace LowLevelDesign.AzureRemoteDesktop
                         }
                     }
                 }
+            } catch (AggregateException ex) {
+                Trace.TraceError(ex.ToString());
+                Console.Write("ERROR: unrecovable error(s) occured. Details: ");
+                ex = ex.Flatten();
+                if (ex.InnerExceptions.Count == 1) {
+                    Console.WriteLine($"[{ex.InnerException.GetType().Name}] {ex.InnerException.Message}");
+                } else {
+                    Console.WriteLine();
+                    foreach (var inex in ex.InnerExceptions) {
+                        Console.WriteLine($"- [{inex.GetType().Name}] {inex.Message}");
+                    }
+                }
+            } catch (AzureException ex) {
+                Trace.TraceError(ex.ToString());
+                Console.WriteLine($"ERROR: error while performing action in Azure. Details: {ex.Message}.");
+                Console.WriteLine("If the error persists, you may turn detailed logging with -v switch to learn more.");
             } catch (Exception ex) {
-                // FIXME catch AzureException 
-                Console.WriteLine("ERROR: error occurred. Full details:");
-                Console.WriteLine(ex);
+                Trace.TraceError(ex.ToString());
+                Console.WriteLine($"ERROR: unrecovable error occured. Details: [{ex.GetType().Name}] {ex.Message}.");
             }
         }
 
