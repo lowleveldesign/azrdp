@@ -87,26 +87,53 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 resourceManager.AuthenticateWithPrompt().Wait();
 
                 var targetVM = new AzureVMLocalizer(resourceManager);
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("  Gathering information about the target VM");
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine();
                 targetVM.LocalizeVMAsync(resourceGroupName, vmIPAddress, appCancellationToken).Wait();
 
                 Trace.TraceInformation($"The target VM IP: {targetVM.TargetIPAddress}, Vnet: {Path.GetFileName(targetVM.VirtualNetworkId)}, " +
                     $"Subnet: {Path.GetFileName(targetVM.SubnetId)}, RG: {targetVM.ResourceGroupName}");
 
                 using (var azureJumpHost = new AzureJumpHost(resourceManager, targetVM)) {
-                    var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir);
-                    if (!openSSHWrapper.IsKeyFileLoaded) {
-                        openSSHWrapper.GenerateKeyFileInUserProfile();
-                    }
+                    using (var openSSHWrapper = new OpenSSHWrapper(SupportFiles.SupportFileDir, RootUsername)) {
+                        if (!openSSHWrapper.IsKeyFileLoaded) {
+                            openSSHWrapper.GenerateKeyFileInUserProfile();
+                        }
 
-                    Console.WriteLine("Provisioning VM with Public IP in Azure ...");
-                    azureJumpHost.DeployAndStartAsync(RootUsername, openSSHWrapper.GetPublicKey(), vmSize, appCancellationToken).Wait();
+                        Console.WriteLine("-------------------------------------------");
+                        Console.WriteLine("  Provisioning VM with Public IP in Azure");
+                        Console.WriteLine("-------------------------------------------");
+                        Console.WriteLine();
+                        azureJumpHost.DeployAndStartAsync(RootUsername, openSSHWrapper.GetPublicKey(), vmSize, appCancellationToken).Wait();
 
-                    openSSHWrapper.StartOpenSSHSession(localPort, targetVM.TargetIPAddress, remotePort);
+                        var jumpHostPublicIPAddress = azureJumpHost.GetPublicIPAddressAsync(appCancellationToken).Result;
+                        openSSHWrapper.StartOpenSSHSession(new OpenSSHWrapper.SSHSessionInfo {
+                            LocalPort = localPort,
+                            TargetPort = remotePort,
+                            TargetVMIPAddress = targetVM.TargetIPAddress,
+                            JumpHostPublicIPAddress = jumpHostPublicIPAddress
+                        });
 
-                    Console.WriteLine("Press Ctrl+C to gracefully close the session.");
-                    // FIXME: start mstsc with a connection to localhost and a port number
-                    while (!appCancellationToken.IsCancellationRequested) {
-                        Thread.Sleep(TimeSpan.FromSeconds(10));
+                        Console.WriteLine();
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine("  SSH tunnel to the target VM is open");
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine();
+                        Console.WriteLine("       Local endpoint : localhost:{0}", localPort);
+                        Console.WriteLine("   Target VM endpoint : {0}:{1}", targetVM.TargetIPAddress, remotePort);
+                        Console.WriteLine("SSH jump host address : {0}", jumpHostPublicIPAddress);
+                        Console.WriteLine();
+                        Console.WriteLine("Press Ctrl+C to end the session and remove all the resources.");
+
+                        if (remotePort == 3389) { // for RDP we will start mstsc
+                            Process.Start("mstsc", $"/v:localhost:{localPort}");
+                        }
+
+                        while (!appCancellationToken.IsCancellationRequested) {
+                            Thread.Sleep(TimeSpan.FromSeconds(5));
+                        }
                     }
                 }
             } catch (Exception ex) {

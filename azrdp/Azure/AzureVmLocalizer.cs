@@ -92,9 +92,8 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
 
             int num;
             if (resourceGroups.Length > 1) {
-                Console.WriteLine("------------------------------------------");
                 Console.WriteLine("Resource Groups found in the subscription:");
-                Console.WriteLine("------------------------------------------");
+                Console.WriteLine();
                 for (int i = 0; i < resourceGroups.Length; i++) {
                     Console.WriteLine("[{0}] {1}", i + 1, resourceGroups[i].Value<string>("name"));
                 }
@@ -104,6 +103,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 if (!int.TryParse(response, out num) || num < 1 || num > resourceGroups.Length) {
                     throw new ArgumentException("Invalid Resource Group number");
                 }
+                Console.WriteLine();
             } else {
                 num = 1;
             }
@@ -188,9 +188,8 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             if (foundVirtualMachines.Count == 1) {
                 num = 1;
             } else {
-                Console.WriteLine("---------------------------------------------------");
                 Console.WriteLine("VM IP addresses found in the chosen Resource Group:");
-                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine();
                 for (int i = 0; i < foundVirtualMachines.Count; i++) {
                     var vm = foundVirtualMachines[i];
                     Console.WriteLine("[{0}] {1}, ip: {2}", i + 1, 
@@ -202,6 +201,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 if (!int.TryParse(response, out num) || num < 1 || num > foundVirtualMachines.Count) {
                     throw new ArgumentException("Invalid Resource Group number");
                 }
+                Console.WriteLine();
             }
 
             Debug.Assert(num > 0 && num <= foundVirtualMachines.Count);

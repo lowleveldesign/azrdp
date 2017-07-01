@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +33,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
         {
             this.resourceManager = resourceManager;
             this.targetVM = targetVM;
-            this.uniqueResourceIdentifier = Guid.NewGuid().ToString("n");
+            uniqueResourceIdentifier = "a" + Guid.NewGuid().ToString("n");
         }
 
         public async Task DeployAndStartAsync(string rootUsername, string sshPublicKey,
@@ -58,7 +60,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             ip.Add("location", targetVM.ResourceGroupLocation);
             ip.Add("properties", properties);
 
-            var id = $"IP{uniqueResourceIdentifier}-pip";
+            var id = $"{uniqueResourceIdentifier}-pip";
             publicIPId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Network/publicIPAddresses/{id}";
 
@@ -66,6 +68,31 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
 
             createdResources.Push(new AzureResource { ResourceId = publicIPId });
             Console.WriteLine("done ({0})", id);
+        }
+
+        private async Task<string> GetMyPublicIPAsync(CancellationToken cancellationToken)
+        {
+            var httpClient = new HttpClient();
+            try {
+                using (var resp = await httpClient.GetAsync("https://api.ipify.org/", cancellationToken)) {
+                    if (resp.StatusCode != HttpStatusCode.OK) {
+                        throw new Exception($"The bot.whatismyipaddress.com returned: {(int)resp.StatusCode}");
+                    }
+                    var ipaddr = await resp.Content.ReadAsStringAsync();
+                    IPAddress ip;
+                    if (!IPAddress.TryParse(ipaddr, out ip)) {
+                        throw new Exception($"Invalid IP address returned: {ipaddr}");
+                    }
+                    return ip.ToString();
+                }
+            } catch (Exception ex) {
+                Console.WriteLine("WARNING: Problem while trying to get your outgoing IP address " +
+                    "- the firewall for the jump host will accept connections from all the hosts. " +
+                    "Error details: {0}", ex.Message);
+                return "Internet";
+            } finally {
+                httpClient.Dispose();
+            }
         }
 
         private async Task CreateNetworkSecurityGroupAsync(CancellationToken cancellationToken)
@@ -79,8 +106,8 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 { "protocol", "Tcp" },
                 { "sourcePortRange", "*" },
                 { "destinationPortRange", "22" },
-                { "sourceAddressPrefix", "Internet" }, // FIXME we should only use public IP here
-                { "destinationAddressPrefix", targetVM.TargetIPAddress },
+                { "sourceAddressPrefix", await GetMyPublicIPAsync(cancellationToken) },
+                { "destinationAddressPrefix", "*" },
                 { "access", "Allow" },
                 { "direction", "Inbound" },
                 { "priority", 100 }
@@ -97,10 +124,12 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             networkSecurityGroupId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Network/networkSecurityGroups/{id}";
 
-            await resourceManager.PutAsync(networkSecurityGroupId, nsg.ToString(), cancellationToken);
+            if (!cancellationToken.IsCancellationRequested) {
+                await resourceManager.PutAsync(networkSecurityGroupId, nsg.ToString(), cancellationToken);
 
-            createdResources.Push(new AzureResource { ResourceId = networkSecurityGroupId });
-            Console.WriteLine("done ({0})", id);
+                createdResources.Push(new AzureResource { ResourceId = networkSecurityGroupId });
+                Console.WriteLine("done ({0})", id);
+            }
         }
 
         public async Task CreateNetworkInterfaceAsync(CancellationToken cancellationToken)
@@ -157,8 +186,6 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 } },
                 { "osDisk", new JObject() {
                     { "createOption", "fromImage" },
-                    { "managedDisk", new JObject() { { "storageAccountType",
-                            vmSize.EndsWith("S", StringComparison.OrdinalIgnoreCase) ? "Premium_LRS" : "Standard_LRS" } } }
                 } }
             };
 
@@ -203,7 +230,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 } }
             };
 
-            virtualMachineId  = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
+            virtualMachineId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Compute/virtualMachines/{id}?api-version=2017-03-30";
 
             await resourceManager.PutAsync($"{virtualMachineId}", vm.ToString(), cancellationToken);
@@ -234,6 +261,23 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
         private bool IsVmRunning(JToken vm)
         {
             return string.Equals(vm["properties"].Value<string>("provisioningState"), "succeeded", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public async Task<string> GetPublicIPAddressAsync(CancellationToken cancellationToken)
+        {
+            Debug.Assert(publicIPId != null);
+            if (publicIPId == null) {
+                throw new InvalidOperationException();
+            }
+
+            var publicIP = await resourceManager.GetAsync(publicIPId, cancellationToken);
+            var publicIPAddress = publicIP["properties"].Value<string>("ipAddress");
+            IPAddress ip;
+            if (!IPAddress.TryParse(publicIPAddress, out ip)) {
+                throw new InvalidOperationException("Public IP address was not assigned to the VM.");
+            }
+
+            return publicIPAddress;
         }
 
         public void Dispose()
