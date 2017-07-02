@@ -131,7 +131,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 }
             } catch (AggregateException ex) {
                 Trace.TraceError(ex.ToString());
-                Console.Write("ERROR: unrecovable error(s) occured. Details: ");
+                Console.Write("ERROR: ");
                 ex = ex.Flatten();
                 if (ex.InnerExceptions.Count == 1) {
                     Console.WriteLine($"[{ex.InnerException.GetType().Name}] {ex.InnerException.Message}");
@@ -147,7 +147,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 Console.WriteLine("If the error persists, you may turn detailed logging with -v switch to learn more.");
             } catch (Exception ex) {
                 Trace.TraceError(ex.ToString());
-                Console.WriteLine($"ERROR: unrecovable error occured. Details: [{ex.GetType().Name}] {ex.Message}.");
+                Console.WriteLine($"ERROR: [{ex.GetType().Name}] {ex.Message}.");
             }
         }
 
