@@ -62,7 +62,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
             }
 
             Guid g;
-            if (!Guid.TryParseExact(subscriptionId, "d", out g)) {
+            if (!showHelp && !Guid.TryParseExact(subscriptionId, "d", out g)) {
                 Console.Error.WriteLine("ERROR: subscription id was not provided or is invalid");
                 Console.Error.WriteLine();
                 showHelp = true;
@@ -171,7 +171,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
 
         static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("azrdp v{0} - create a temporary jump host to a VM in Azure",
+            Console.WriteLine("AzRdp v{0} - creates a temporary SSH tunnel to a VM in Azure",
                 Assembly.GetExecutingAssembly().GetName().Version.ToString());
             Console.WriteLine("Copyright (C) 2017 Sebastian Solnica (@lowleveldesign)");
             Console.WriteLine();
