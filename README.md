@@ -1,7 +1,29 @@
 
 # AzRdp (or Azure Remote Desktop)
 
-This application creates a temporary SSH tunnel to a virtual machine in Azure, so you could access it from your computer. The target VM is identified by the subscription id, the resource group name, and the IP address. Among these parameters only the subscription id is required on start; you will be presented with a choice for the other values.
+This application creates a temporary SSH tunnel to a virtual machine in Azure, so you could access it from your computer. The target VM is identified by the subscription id, the resource group name, and the IP address. Among these parameters only the subscription id is required on start; you will be presented with a choice for the other values. The full command line looks as follows:
+
+```
+AzRdp v1.0.0.0 - creates a temporary SSH tunnel to a VM in Azure
+Copyright (C) 2017 Sebastian Solnica (@lowleveldesign)
+
+Usage: azrdp [OPTIONS]
+
+Options:
+  -s, --subscriptionId=VALUE Subscription id, in which the VM is located.
+  -r, --resgroup=VALUE       Resource Group name or id, where the VM is
+                               located.
+  -i, --vmip=VALUE           Virtual Machine IP address.
+  -l, --localport=VALUE      Port number of the local machine used by the SSH
+                               tunnel (default 50000).
+  -p, --remoteport=VALUE     Port number of the remote machine (default 3389 -
+                                RDP).
+      --vmsize=VALUE         The size of the Virtual Machine to be created
+                               (default Standard_F1S)
+  -v, --verbose              Outputs all requests to Azure.
+  -h, --help                 Show this message and exit
+  -?                         Show this message and exit
+```
 
 The application name might be a bit misleading, as my initial idea was to have a tool only for the Windows Remote Desktop connections, but when I switched to the SSH tunnel other protocols started to work too. However, I got used to azrdp - I hope you will too :)
 
