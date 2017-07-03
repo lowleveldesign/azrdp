@@ -1,5 +1,5 @@
 
-# AzRdp (or Azure Remote Desktop)
+# AzRdp
 
 This application creates a temporary SSH tunnel to a virtual machine in Azure, so you could access it from your computer. The target VM is identified by the subscription id, the resource group name, and the IP address. Among these parameters only the subscription id is required on start; you will be presented with a choice for the other values. The full command line looks as follows:
 
