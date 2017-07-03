@@ -300,7 +300,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
 
             if (targetVM.SubnetNetworkSecurityGroupId != null) {
                 // we need to update the subnet NSG rules
-                Console.Write("Adding new rule to the subnet's Network Security Group...");
+                Console.Write("Adding a new rule to the subnet's Network Security Group...");
 
                 var rule = new JObject();
                 rule.Add("properties", new JObject() {
@@ -318,7 +318,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 await resourceManager.PutAsync(subnetNetworkSecurityGroupRuleId, rule.ToString(), cancellationToken);
                 createdResources.Push(new AzureResource { ResourceId = subnetNetworkSecurityGroupRuleId });
 
-                Console.WriteLine("done");
+                Console.WriteLine($"done ({uniqueResourceIdentifier})");
             }
         }
 
