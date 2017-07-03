@@ -25,7 +25,7 @@ Options:
   -?                         Show this message and exit
 ```
 
-The application name might be a bit misleading, as my initial idea was to have a tool only for the Windows Remote Desktop connections, but when I switched to the SSH tunnel other protocols started to work too. However, I got used to azrdp - I hope you will too :)
+The application name might be a bit misleading, as my initial idea was to have a tool only for the Windows Remote Desktop connections, but when I switched to the SSH tunnel other ports started to work too :)
 
 **CAVEAT**: In the current version, the newly created virtual machine is deployed in the same subnet as the target VM. And although I tried to make it as secure as possible (NSG rule on the incoming traffic and SSH certificate-based authentication), there will be a public IP connected to your virtual network while the application is running. Please keep that in mind.
 
