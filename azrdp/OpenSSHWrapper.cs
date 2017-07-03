@@ -26,6 +26,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
         private string keyPath;
         private string publicKeyPath;
         private Process sshSessionProcess;
+        private bool verboseLogging;
 
         public OpenSSHWrapper(string pathToBinaries, string rootUsername)
         {
@@ -50,6 +51,17 @@ namespace LowLevelDesign.AzureRemoteDesktop
             get { return keyPath != null && publicKeyPath != null; }
         }
 
+        public bool IsSSHSessionActive
+        {
+            get { return !sshSessionProcess.HasExited;  }
+        }
+
+        public bool VerboseLoggingEnabled
+        {
+            get { return verboseLogging; }
+            set { verboseLogging = value; }
+        }
+
         public string GetPublicKey()
         {
             if (!IsKeyFileLoaded) {
@@ -69,7 +81,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
             var path = Path.Combine(sshKeysFolderPath, "azrdp_rsa");
             var args = $"-t rsa -b 2048 -q -f \"{path}\" -N \"\"";
             var psi = new ProcessStartInfo(sshKeyGenPath, args) {
-                CreateNoWindow = true
+                CreateNoWindow = !verboseLogging
             };
             var process = Process.Start(psi);
             process.WaitForExit();
@@ -95,7 +107,7 @@ namespace LowLevelDesign.AzureRemoteDesktop
                 $"-o \"StrictHostKeyChecking no\" " +
                 $"{rootUsername}@{ssh.JumpHostPublicIPAddress}";
             var psi = new ProcessStartInfo(sshPath, args) {
-                CreateNoWindow = true,
+                CreateNoWindow = !verboseLogging,
                 RedirectStandardInput = true,
                 UseShellExecute = false
             };

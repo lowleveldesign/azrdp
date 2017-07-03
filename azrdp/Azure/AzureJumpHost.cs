@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -23,11 +24,15 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
         private readonly string uniqueResourceIdentifier;
         private readonly Stack<AzureResource> createdResources = new Stack<AzureResource>(10);
 
+        private string myPublicIPAddress;
+        private string virtualMachinePrivateIPAddress;
+
         private string networkSecurityGroupId;
         private string publicIPId;
         private string networkInterfaceCardId;
         private string virtualMachineId;
         private string virtualMachineOsDiskId;
+        private string subnetNetworkSecurityGroupRuleId;
 
         public AzureJumpHost(AzureResourceManager resourceManager, AzureVMLocalizer targetVM)
         {
@@ -39,11 +44,15 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
         public async Task DeployAndStartAsync(string rootUsername, string sshPublicKey,
             string vmSize = "Standard_F1S", CancellationToken cancellationToken = default(CancellationToken))
         {
+            myPublicIPAddress = await GetMyPublicIPAsync(cancellationToken);
+
             await CreatePublicIPAsync(cancellationToken);
 
             await CreateNetworkSecurityGroupAsync(cancellationToken);
 
             await CreateNetworkInterfaceAsync(cancellationToken);
+
+            await UpdateNetworkSecurityGroupForSubnetAsync(cancellationToken);
 
             await CreateVirtualMachineAsync(rootUsername, sshPublicKey, vmSize, cancellationToken);
         }
@@ -70,7 +79,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             Console.WriteLine("done ({0})", id);
         }
 
-        private async Task<string> GetMyPublicIPAsync(CancellationToken cancellationToken)
+        private static async Task<string> GetMyPublicIPAsync(CancellationToken cancellationToken)
         {
             var httpClient = new HttpClient();
             try {
@@ -97,6 +106,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
 
         private async Task CreateNetworkSecurityGroupAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(myPublicIPAddress != null);
             Console.Write("Creating Network Security Group...");
 
             var securityRules = new JArray();
@@ -106,7 +116,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 { "protocol", "Tcp" },
                 { "sourcePortRange", "*" },
                 { "destinationPortRange", "22" },
-                { "sourceAddressPrefix", await GetMyPublicIPAsync(cancellationToken) },
+                { "sourceAddressPrefix", myPublicIPAddress },
                 { "destinationAddressPrefix", "*" },
                 { "access", "Allow" },
                 { "direction", "Inbound" },
@@ -149,7 +159,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
                 } }
             });
 
-            var nic = new JObject() {
+            JToken nic = new JObject() {
                 { "location", targetVM.ResourceGroupLocation },
                 { "properties", new JObject() {
                         { "networkSecurityGroup", new JObject() { { "id", networkSecurityGroupId } } },
@@ -162,9 +172,12 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             networkInterfaceCardId = $"/subscriptions/{targetVM.SubscriptionId}/resourceGroups/{targetVM.ResourceGroupName}" +
                 $"/providers/Microsoft.Network/networkInterfaces/{id}";
 
-            await resourceManager.PutAsync(networkInterfaceCardId, nic.ToString(), cancellationToken);
+            nic = await resourceManager.PutAsync(networkInterfaceCardId, nic.ToString(), cancellationToken);
+            createdResources.Push(new AzureResource { ResourceId = networkInterfaceCardId, ShouldWaitForRemoval = true });
 
-            createdResources.Push(new AzureResource { ResourceId = networkInterfaceCardId });
+            virtualMachinePrivateIPAddress = nic["properties"]["ipConfigurations"][0]["properties"]
+                .Value<string>("privateIPAddress");
+
             Console.WriteLine("done ({0})", id);
         }
 
@@ -278,6 +291,35 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             }
 
             return publicIPAddress;
+        }
+
+        private async Task UpdateNetworkSecurityGroupForSubnetAsync(CancellationToken cancellationToken)
+        {
+            Debug.Assert(myPublicIPAddress != null);
+            Debug.Assert(virtualMachinePrivateIPAddress != null);
+
+            if (targetVM.SubnetNetworkSecurityGroupId != null) {
+                // we need to update the subnet NSG rules
+                Console.Write("Adding new rule to the subnet's Network Security Group...");
+
+                var rule = new JObject();
+                rule.Add("properties", new JObject() {
+                    { "protocol", "Tcp" },
+                    { "sourcePortRange", "*" },
+                    { "destinationPortRange", "22" },
+                    { "sourceAddressPrefix", myPublicIPAddress },
+                    { "destinationAddressPrefix", virtualMachinePrivateIPAddress },
+                    { "access", "Allow" },
+                    { "direction", "Inbound" },
+                    { "priority", 100 }
+                });
+
+                subnetNetworkSecurityGroupRuleId = $"{targetVM.SubnetNetworkSecurityGroupId}/securityRules/{uniqueResourceIdentifier}";
+                await resourceManager.PutAsync(subnetNetworkSecurityGroupRuleId, rule.ToString(), cancellationToken);
+                createdResources.Push(new AzureResource { ResourceId = subnetNetworkSecurityGroupRuleId });
+
+                Console.WriteLine("done");
+            }
         }
 
         public void Dispose()

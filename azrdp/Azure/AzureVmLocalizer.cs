@@ -31,6 +31,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
         private string resourceGroupLocation;
         private string virtualNetworkId;
         private string subnetId;
+        private string subnetNetworkSecurityGroupId;
         private string targetIPAddress;
 
         public AzureVMLocalizer(AzureResourceManager resourceManager)
@@ -49,6 +50,8 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
 
         public string SubnetId { get { return subnetId; } }
 
+        public string SubnetNetworkSecurityGroupId { get { return subnetNetworkSecurityGroupId; } }
+
         public string TargetIPAddress { get { return targetIPAddress; } }
 
         public async Task LocalizeVMAsync(string resourceGroupName, string vmIPAddress, CancellationToken cancellationToken)
@@ -59,10 +62,12 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             // virtual machine
             if (!string.IsNullOrEmpty(vmIPAddress)) {
                 targetIPAddress = vmIPAddress;
-                await FindVnetAndSubnet(cancellationToken);
+                await FindVnetAndSubnetAsync(cancellationToken);
             } else {
                 await PromptForVirtualMachineAsync(cancellationToken);
             }
+
+            await FindSubnetNetworkSecurityGroupAsync(cancellationToken);
 
             Debug.Assert(subscriptionId != null);
             Debug.Assert(this.resourceGroupName != null);
@@ -210,7 +215,7 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             targetIPAddress = foundVirtualMachines[num - 1].IPAddress;
         }
 
-        private async Task FindVnetAndSubnet(CancellationToken cancellationToken)
+        private async Task FindVnetAndSubnetAsync(CancellationToken cancellationToken)
         {
             Debug.Assert(subscriptionId != null);
             Debug.Assert(resourceGroupName != null);
@@ -240,5 +245,16 @@ namespace LowLevelDesign.AzureRemoteDesktop.Azure
             throw new ArgumentException("There is no subnet that contains an IP address " +
                     $"'{virtualMachineIPAddress}' in a resource group '{resourceGroupName}'");
         }
+
+        private async Task FindSubnetNetworkSecurityGroupAsync(CancellationToken cancellationToken)
+        {
+            Debug.Assert(subnetId != null);
+
+            var subnetProperties = (await resourceManager.GetAsync(subnetId, cancellationToken))["properties"];
+            if (subnetProperties["networkSecurityGroup"] != null) {
+                subnetNetworkSecurityGroupId = subnetProperties["networkSecurityGroup"].Value<string>("id");
+            }
+        }
+
     }
 }

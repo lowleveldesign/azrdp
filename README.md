@@ -38,7 +38,7 @@ The tunneling is performed by the Linux virtual machine, configured to use SSH c
 - Network Security Group bound to the newly created NIC, allowing access from your IP address (read from <https://api.ipify.org/>) to port 22 on the jump host
 - Virtual Machine with Ubuntu 16.04 (default size: Standard\_F1S)
 
-When the provisioning is done (usually within 2-3 minutes), an ssh.exe process is started with an SSH tunnel enabled (by default it uses port 50000 on the localhost).
+If there is a Network Security Group associated to the target subnet, a new rule will be added allowing connections from your IP to the newly created virtual machine. When the provisioning is done (usually within 2-3 minutes), an ssh.exe process is started with an SSH tunnel enabled (by default it uses port 50000 on the localhost).
 
 A sample session might look as follows:
 
@@ -67,9 +67,15 @@ Opening tunnel to the virtual machine...done
 SSH jump host address : 194.194.194.194
 
 Press Ctrl+C to end the session and remove all the resources.
+```
 
-{user works on Remote Desktop, finally presses Ctrl+C}
+Now, you may access your Azure VM by using the address localhost:50000. If you sign in to the Azure portal you would see a list of resources created by azrdp (the unique identifier will be different):
 
+![azrdp resources in Azure porta](https://raw.githubusercontent.com/lowleveldesign/azrdp/master/docs/components-in-azure.png)
+
+When you are done with your work, you may press Ctrl+C and the clean-up process should start:
+
+```
 Please wait. It may take up to few minutes to remove all the resources.
 
 Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Compute/virtualMachines/a704028e41a2e4b3e8b71d1a2eec08762-vm?api-version=2017-03-30.......................done

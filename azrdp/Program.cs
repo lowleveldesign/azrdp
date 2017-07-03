@@ -125,6 +125,10 @@ namespace LowLevelDesign.AzureRemoteDesktop
                         }
 
                         while (!appCancellationToken.IsCancellationRequested) {
+                            if (!openSSHWrapper.IsSSHSessionActive) {
+                                Console.WriteLine("ERROR: SSH session ended unexpectedly. Use -v option to enable SSH process output.");
+                                break;
+                            }
                             Thread.Sleep(TimeSpan.FromSeconds(5));
                         }
                     }
