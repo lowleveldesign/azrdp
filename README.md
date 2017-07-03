@@ -38,7 +38,7 @@ The tunneling is performed by the Linux virtual machine, configured to use SSH c
 - Network Security Group bound to the newly created NIC, allowing access from your IP address (read from <https://api.ipify.org/>) to port 22 on the jump host
 - Virtual Machine with Ubuntu 16.04 (default size: Standard\_F1S)
 
-If there is a Network Security Group associated to the target subnet, a new rule will be added allowing connections from your IP to the newly created virtual machine. When the provisioning is done (usually within 2-3 minutes), an ssh.exe process is started with an SSH tunnel enabled (by default it uses port 50000 on the localhost).
+If there is a Network Security Group associated with the target subnet, a new rule will be added, allowing connections from your IP to the newly created virtual machine. When the provisioning is done (usually within 2-4 minutes), an ssh.exe process is started with an SSH tunnel enabled (by default it uses port 50000 on the localhost).
 
 A sample session might look as follows:
 
