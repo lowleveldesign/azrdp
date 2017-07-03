@@ -52,10 +52,10 @@ PS bin> .\azrdp.exe -s {subscription-id} -r azrdp
   Provisioning VM with Public IP in Azure
 -------------------------------------------
 
-Creating public IP address...done (a704028e41a2e4b3e8b71d1a2eec08762-pip)
-Creating Network Security Group...done (a704028e41a2e4b3e8b71d1a2eec08762-nsg)
-Creating Network Interface Card...done (a704028e41a2e4b3e8b71d1a2eec08762-nic)
-Creating Virtual Machine..............................done (a704028e41a2e4b3e8b71d1a2eec08762-vm)
+Creating public IP address...done (a09ac0a30c70d4efcb59b04eefc6b693a-pip)
+Creating Network Security Group...done (a09ac0a30c70d4efcb59b04eefc6b693a-nsg)
+Creating Network Interface Card...done (a09ac0a30c70d4efcb59b04eefc6b693a-nic)
+Creating Virtual Machine..............................done (a09ac0a30c70d4efcb59b04eefc6b693a-vm)
 Opening tunnel to the virtual machine...done
 
 ---------------------------------------
@@ -78,11 +78,11 @@ When you are done with your work, you may press Ctrl+C and the clean-up process 
 ```
 Please wait. It may take up to few minutes to remove all the resources.
 
-Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Compute/virtualMachines/a704028e41a2e4b3e8b71d1a2eec08762-vm?api-version=2017-03-30.......................done
-Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Compute/disks/a704028e41a2e4b3e8b71d1a2eec08762-vm_OsDisk_1_53f7d119fbbf44e3b6ffab7ad0e74b54?api-version=2017-03-30...done
-Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Network/networkInterfaces/a704028e41a2e4b3e8b71d1a2eec08762-nic...done
-Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Network/networkSecurityGroups/a704028e41a2e4b3e8b71d1a2eec08762-nsg...done
-Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Network/publicIPAddresses/a704028e41a2e4b3e8b71d1a2eec08762-pip...done
+Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Compute/virtualMachines/a09ac0a30c70d4efcb59b04eefc6b693a-vm?api-version=2017-03-30.......................done
+Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Compute/disks/a09ac0a30c70d4efcb59b04eefc6b693a-vm_OsDisk_1_53f7d119fbbf44e3b6ffab7ad0e74b54?api-version=2017-03-30...done
+Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Network/networkInterfaces/a09ac0a30c70d4efcb59b04eefc6b693a-nic...done
+Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Network/networkSecurityGroups/a09ac0a30c70d4efcb59b04eefc6b693a-nsg...done
+Removing /subscriptions/{subscription-id}/resourceGroups/azrdp/providers/Microsoft.Network/publicIPAddresses/a09ac0a30c70d4efcb59b04eefc6b693a-pip...done
 ```
 
 This tool uses Azure REST API (a lot of code taken from the [ARMClient](https://github.com/projectkudu/ARMClient) project). You may use the **-v** switch to see all the HTTP requests and responses sent and received by the application.
